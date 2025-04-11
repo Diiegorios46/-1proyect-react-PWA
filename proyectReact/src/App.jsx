@@ -1,6 +1,6 @@
 import  Home from './pages/Home/Home';
+import Title from './Components/Tittle/Titte';
 import "./App.css";
-import Title from './Components/Titte'
 
 function App() {
 

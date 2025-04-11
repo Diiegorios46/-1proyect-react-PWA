@@ -62,10 +62,14 @@ const Home = () => {
                 </div>
 
                 {/* vistas */}
-                <EstadoVisto/>
+                <EstadoVisto estado={"Vistas"} CantTiposGenero={"10"}/>
 
                 {/* Container cards */}
                 <div className={Styles.container_cards}>
+                    <Card EstadoVisto={true}/>
+                    <Card EstadoVisto={true}/>
+                    <Card EstadoVisto={true}/>
+                    <Card EstadoVisto={true}/>
                     <Card EstadoVisto={true}/>
                     <Card EstadoVisto={true}/>
                     <Card EstadoVisto={true}/>
@@ -74,12 +78,16 @@ const Home = () => {
 
                 {/* ver */}
                 <div>
-                    <EstadoVisto/>
+                    <EstadoVisto estado={"Ver"} CantTiposGenero={"10"}/>
                 </div>
 
                 {/* container cards */}
                 <div className={Styles.container_cards}>
                     <Card EstadoVisto={false}/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
                     <Card/>
                     <Card/>
                     <Card/>
