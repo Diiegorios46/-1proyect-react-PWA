@@ -1,0 +1,11 @@
+
+.container_card{
+    border : 1px solid black;
+}
+
+.container_botones
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}

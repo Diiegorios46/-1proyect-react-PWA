@@ -1,0 +1,11 @@
+.container_vistas{
+    display: flex;
+    justify-content: start;
+    border: 1px solid black;
+}
+
+.container_cant_vistas_generos{
+    display: flex;
+    border: 1px solid black;
+    gap: 10px;
+}

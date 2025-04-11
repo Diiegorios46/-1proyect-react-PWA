@@ -1,0 +1,38 @@
+
+.container_filtros{
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.container_peliculas{
+    border: 1px solid black;
+    display: grid;
+
+}
+
+.container_main{
+    height: auto;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.filtros{
+    width: 80%;
+    height: auto;
+    border: 1px solid black;
+    display : flex;
+    flex-direction: column;
+
+}
+
+.container_cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+
