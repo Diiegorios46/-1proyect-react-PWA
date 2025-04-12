@@ -1,7 +1,8 @@
+import Style from './Tittle.module.css'
 
 const Tittle = () => {
     return (
-        <h1>Cuebana</h1>
+        <h1 className={Style.tittle}>Nombre de la app</h1>
     )
 } 
 

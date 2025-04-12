@@ -137,12 +137,13 @@ const Home = () => {
                     </div>
                 )}
 
+
                 <section className={Styles.container_filtros}>
                     <div className={Styles.filtros}>
-                        <span>Filtros</span>
+                        <span className={Styles.tittle_filtros}>Filtros</span>
                         <span>Generos : </span>
 
-                        <select name="genero" id="genero">
+                        <select name="genero" id="genero" className={Styles.select_filtros}>
                             <option value="">-- Selecciona un género --</option>
                             <option value="accion">Acción</option>
                             <option value="">-- Selecciona un género --</option>
@@ -165,8 +166,8 @@ const Home = () => {
                             <option value="deporte">Deporte</option>
                         </select>
 
-                        <label htmlFor="">Ingrese el Rating</label>
-                        <input type="text" name="" id="" />
+                        <label htmlFor="">Ingrese el Rating:</label>
+                        <input type="text" name="" id="" className={Styles.input}/>
 
                         <label htmlFor="">Ascendente
                             <input type="checkbox" name="" id="" />
@@ -181,16 +182,16 @@ const Home = () => {
                     </div>
                 </section>
 
-                        <section className={Styles.container_peliculas}>
+                <section className={Styles.container_peliculas}>
 
-                            {/* Titulo / director - Busqueda */}
-                <div>
-                    <input type="text" value={"Titulo/director"}/>
+                {/* Titulo / director - Busqueda */}
+                <div className={Styles.container_inputBusqueda}>
+                    <input type="text" value={"Titulo/director"} className={Styles.inputBusquedaPeli}/>
                 </div>
 
                 {/* Agregar pelicula/serie  */}
-                <div>
-                    <button onClick={() => setButtonAddpeli(true)}>Agregar Pelicula/Serie</button>
+                <div className={Styles.container_buttonAgregarPeli}>
+                    <button className={Styles.buttonAgregarPeli} onClick={() => setButtonAddpeli(true)}>Agregar Pelicula/Serie</button>
                 </div>
 
                 {/* vistas */} 

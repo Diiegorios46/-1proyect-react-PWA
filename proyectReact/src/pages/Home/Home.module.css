@@ -24,7 +24,54 @@
     border: 1px solid black;
     display : flex;
     flex-direction: column;
+    gap: 15px;
+}
 
+.tittle_filtros{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.select_filtros{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.input{
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.container_inputBusqueda{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.container_buttonAgregarPeli{
+    display: flex;
+    gap: 10px;
+    margin: 2%;
+
+}
+
+.buttonAgregarPeli{
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.inputBusquedaPeli{
+    width: 50%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 .container_cards{
