@@ -9,6 +9,8 @@ import { useState , useEffect } from "react";
 const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
+    const [filtrarXGenero , setFiltrarXGenero] = useState("");
+    const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
 
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -64,21 +66,75 @@ const Home = () => {
         console.log(nuevaPeliSerie)
     }
 
+
+    const handleInputGenero = (e) => {
+        console.log(e.target.value)
+        setFiltrarXGenero(e.target.value)
+    }
+
+    const filtrarPorGenero = (contenido) => {
+        if (!filtrarXGenero) return true
+        return contenido == filtrarXGenero
+    }
+
     const agregarPelicula = () => {
-        setArrayModPelis(prev => [...prev,{...nuevaPeliSerie, id: arrayModPelis.length }])
+        setArrayModPelis(prev => [...prev,{...nuevaPeliSerie, id: arrayModPelis.length + 1}])
         setNuevaPeliSerie({
             titulo: '',
             director: '',
             genero: '',
             rating: '',
             visto: false,
-            id: arrayModPelis.length
+            id: arrayModPelis.length +  1
         })
         setButtonAddpeli(false)
     }
 
-    const filtrarXgenero = () => {
+    const handleFiltroXPeli = (e) => {
+        setBuscarXPeliculaSerie(e.target.value)
+        console.log(e.target.value);
+    }
 
+    const contenidoBuscado = () => {
+        if (!buscarXPeliculaSerie ) return true
+        return (
+            arrayModPelis
+            .filter((content) => content.titulo == buscarXPeliculaSerie)
+            .map((content) => {
+                <div>
+                    <Card
+                        key={content.id}
+                        titulo={content.titulo}
+                        director={content.director}
+                        genero={content.genero}
+                        rating={content.rating}
+                        id={content.id}
+                        estadoVisto={content.visto}
+                        // Onclick={handleChange}
+                    />
+                </div>
+
+            })
+        )
+    }
+
+    const contenidoVisto = () => {
+            return(
+                arrayModPelis
+                    .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero))
+                    .map((contenido) => (
+                    <Card
+                        key={contenido.id}
+                        titulo={contenido.titulo}
+                        director={contenido.director}
+                        genero={contenido.genero}
+                        rating={contenido.rating}
+                        id={contenido.id}
+                        estadoVisto={contenido.visto}
+                        Onclick={handleChange}
+                    />
+                ))
+            )
     }
 
 
@@ -111,15 +167,15 @@ const Home = () => {
                                 <label htmlFor="genero">Género</label>
                                 <select name="genero" id="genero" onChange={handleInput} >
                                     <option value="">-- Selecciona un género --</option>
-                                    <option value="accion">Acción</option>
-                                    <option value="aventura">Aventura</option>
-                                    <option value="ciencia-ficcion">Ciencia Ficción</option>
-                                    <option value="comedia">Comedia</option>
-                                    <option value="crimen">Crimen</option>
-                                    <option value="drama">Drama</option>
-                                    <option value="fantasia">Fantasía</option>
-                                    <option value="romance">Romance</option>
-                                    <option value="terror">Terror</option>
+                                    <option value="Accion">Acción</option>
+                                    <option value="Aventura">Aventura</option>
+                                    <option value="Ciencia-Ficcion">Ciencia Ficción</option>
+                                    <option value="Comedia">Comedia</option>
+                                    <option value="Crimen">Crimen</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Fantasia">Fantasía</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Terror">Terror</option>
                                 </select>
 
                                 <label htmlFor="rating">Rating</label>
@@ -132,23 +188,23 @@ const Home = () => {
                     </div>
                 )}
 
-
+                {/* -----------------------FILTROS---------------------------------------------------------------------- */}
                 <section className={Styles.container_filtros}>
                     <div className={Styles.filtros}>
                         <span className={Styles.tittle_filtros}>Filtros</span>
                         <span>Generos : </span>
 
-                        <select name="genero" id="genero" className={Styles.select_filtros}>
+                        <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
                             <option value="">-- Selecciona un género --</option>
-                            <option value="accion">Acción</option>
-                            <option value="aventura">Aventura</option>
-                            <option value="ciencia-ficcion">Ciencia Ficción</option>
-                            <option value="comedia">Comedia</option>
-                            <option value="crimen">Crimen</option>
-                            <option value="drama">Drama</option>
-                            <option value="fantasia">Fantasía</option>
-                            <option value="romance">Romance</option>
-                            <option value="terror">Terror</option>
+                            <option value="Accion">Acción</option>
+                            <option value="Aventura">Aventura</option>
+                            <option value="Ciencia Ficcion">Ciencia Ficción</option>
+                            <option value="Comedia">Comedia</option>
+                            <option value="Crimen">Crimen</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasia">Fantasía</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Terror">Terror</option>
                         </select>
 
                         <label htmlFor="">Ingrese el Rating:</label>
@@ -171,8 +227,10 @@ const Home = () => {
 
                 {/* Titulo / director - Busqueda */}
                 <div className={Styles.container_inputBusqueda}>
-                    <input type="text" className={Styles.inputBusquedaPeli}/>
+                    <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onChange={handleFiltroXPeli}/>
                 </div>
+
+                {contenidoBuscado()}
 
                 {/* Agregar pelicula/serie  */}
                 <div className={Styles.container_buttonAgregarPeli}>
@@ -185,7 +243,7 @@ const Home = () => {
                 {/* Container cards */}
                 <div className={Styles.container_cards}>
                     {arrayModPelis
-                        .filter((contenido) => contenido.visto == true) // solo los que tienen visto === true
+                        .filter((contenido) => contenido.visto == true)
                         .map((contenido) => (
                         <Card
                             key={contenido.id}
@@ -205,23 +263,9 @@ const Home = () => {
                     <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/>
                 </div>
 
+                {/*------------------------------PELICULAS POR VER ---------------------------------------------  */}
                 <div className={Styles.container_cards}>
-                    {arrayModPelis
-                        .filter((contenido) => contenido.visto == false)
-                          
-                        .map((contenido) => (
-                        <Card
-                            key={contenido.id}
-                            titulo={contenido.titulo}
-                            director={contenido.director}
-                            genero={contenido.genero}
-                            rating={contenido.rating}
-                            id={contenido.id}
-                            estadoVisto={contenido.visto}
-                            Onclick={handleChange}
-                        />
-
-                    ))}
+                    {contenidoVisto()}
                 </div>
 
 
@@ -231,3 +275,5 @@ const Home = () => {
 }
 
 export default Home
+
+

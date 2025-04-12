@@ -1,12 +1,12 @@
 
 export const generos = [
-  { genero: "Acción" },
+  { genero: "Accion" },
   { genero: "Aventura" },
-  { genero: "Ciencia Ficción" },
+  { genero: "Ciencia Ficcion" },
   { genero: "Comedia" },
   { genero: "Crimen" },
   { genero: "Drama" },
-  { genero: "Fantasía" },
+  { genero: "Fantasia" },
   { genero: "Romance" },
   { genero: "Terror" },
 ];
@@ -18,7 +18,7 @@ export const ArrayPelisSeries = [
       titulo: "Matrix",
       director: "Lilly Wachowski",
       anio: 1999,
-      genero: "Ciencia Ficción",
+      genero: "Ciencia Ficcion",
       rating: 8.5,
       tipo: "Película",
       visto: true
@@ -38,7 +38,7 @@ export const ArrayPelisSeries = [
       titulo: "Inception",
       director: "Christopher Nolan",
       anio: 2010,
-      genero: "Suspenso",
+      genero: "Terror",
       rating: 9.0,
       tipo: "Película",
       visto: false
@@ -48,7 +48,7 @@ export const ArrayPelisSeries = [
       titulo: "Parasite",
       director: "Bong Joon-ho",
       anio: 2019,
-      genero: "Comedia Negra",
+      genero: "Comedia",
       rating: 9.1,
       tipo: "Película",
       visto: false
@@ -68,9 +68,9 @@ export const ArrayPelisSeries = [
       titulo: "Stranger Things",
       director: "Hermanos Duffer",
       anio: 2016,
-      genero: "Ciencia Ficción",
+      genero: "Ciencia Ficcion",
       rating: 8.7,
       tipo: "Serie",
       visto: false
-    }
+    },
   ];
