@@ -5,10 +5,10 @@ const EstadoVisto = ({ estado, cantVista , CantTiposGenero }) => {
     return (
         <div className={Styles.container_vistas}>
             
-            <div> {estado} {cantVista} {CantTiposGenero} </div>
+            <div>{estado} {cantVista} {CantTiposGenero} </div>
             
             <div className={Styles.container_cant_vistas_generos}>
-
+        
                 <CardGenero genero={"Accion"} cant={12} />
                 <CardGenero genero={"Drama"} cant={12} />
                 

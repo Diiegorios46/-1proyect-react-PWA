@@ -4,8 +4,9 @@
     border: 1px solid black;
 }
 
-.container_cant_vistas_generos{
+.container_cant_vistas_generos {
     display: flex;
     border: 1px solid black;
     gap: 10px;
+    margin-left: auto; /* Mueve el contenedor hacia la derecha */
 }
