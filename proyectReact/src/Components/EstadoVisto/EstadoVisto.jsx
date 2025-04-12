@@ -1,8 +1,9 @@
 import CardGenero from '../CardGenero/CardGenero';
 import Styles from './EstadoVisto.module.css'
+
 import {ArrayPelisSeries} from '../../Constant/bd';
 
-const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista}) => {
+const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista , useStateArrayPelisSeries}) => {
     
     // const conteoPorGenero = ArrayPelisSeries.reduce((acc, peli) => {
     //     acc[peli.genero] = (acc[peli.genero] || 0) + 1;
@@ -26,12 +27,12 @@ const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista}) => {
 
     const mostrarCardGenero = () => {
         if (mostrarVista) {
-            let arrayAux = ArrayPelisSeries.filter((peli) => peli.visto)
+            let arrayAux = useStateArrayPelisSeries.filter((peli) => peli.visto)
             return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
                 <CardGenero key={genero} genero={genero} cant={cantidad} />
             )); 
         }else{
-            let arrayAux = ArrayPelisSeries.filter((peli) => !peli.visto)
+            let arrayAux = useStateArrayPelisSeries.filter((peli) => !peli.visto)
             return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
                 <CardGenero key={genero} genero={genero} cant={cantidad} />
             ));  

@@ -95,38 +95,3 @@ export const ArrayPelisSeries = [
   }
 ];
 
-export const ordenamientoDescendente = () => {
-  if (arrayModPelis.length === 0) {
-    setArrayModPelis([]);
-    return;
-  }
-  const arrayAux = [...arrayModPelis].sort((a, b) => b.anio - a.anio); 
-  setArrayModPelis(arrayAux);
-};
-
-export const ordenamientoAscendente = () => {
-  if (arrayModPelis.length === 0) {
-      setArrayModPelis([]);
-      return;
-  }
-  const arrayAux = [...arrayModPelis].sort((a, b) => a.anio - b.anio); 
-  setArrayModPelis(arrayAux);
-};
-
-export const ordenamientoAscendenteRating = () => {
-  if (arrayModPelis.length === 0) {
-      setArrayModPelis([]);
-      return;
-  }
-  const arrayAux = [...arrayModPelis].sort((a, b) => a.rating - b.rating); 
-  setArrayModPelis(arrayAux);
-};
-export const ordenamientoDescendenteRating = () => {
-  if (arrayModPelis.length === 0) {
-      setArrayModPelis([]);
-      return;
-  }
-  const arrayAux = [...arrayModPelis].sort((a, b) => b.rating - a.rating); 
-  setArrayModPelis(arrayAux);
-};
-

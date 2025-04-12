@@ -8,6 +8,7 @@ import { useState , useEffect } from "react";
 const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
+    
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
@@ -109,42 +110,6 @@ const Home = () => {
         setBuscarXPeliculaSerie(e.target.value)
     }
     
-    const ordenamientoDescendente = () => {
-        if (arrayModPelis.length === 0) {
-          setArrayModPelis([]);
-          return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => b.anio - a.anio); 
-        setArrayModPelis(arrayAux);
-      };
-
-    const ordenamientoAscendente = () => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => a.anio - b.anio); 
-        setArrayModPelis(arrayAux);
-    };
-
-    const ordenamientoAscendenteRating = () => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => a.rating - b.rating); 
-        setArrayModPelis(arrayAux);
-    };
-    const ordenamientoDescendenteRating = () => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => b.rating - a.rating); 
-        setArrayModPelis(arrayAux);
-    };
-    
-
     const contenidoBuscado = () => {
         return (
             <div>
@@ -200,9 +165,46 @@ const Home = () => {
 
 
     useEffect(() => {
-        console.log(arrayModPelis)
-    }, [arrayModPelis])
+            console.log(arrayModPelis)
+        }, [arrayModPelis]
+    )
 
+    const ordenamientoDescendente = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => b.anio - a.anio); 
+        setArrayModPelis(arrayAux);
+    };
+      
+    const ordenamientoAscendente = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => a.anio - b.anio); 
+        setArrayModPelis(arrayAux);
+    };
+      
+    const ordenamientoAscendenteRating = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => a.rating - b.rating); 
+        setArrayModPelis(arrayAux);
+    };
+
+    const ordenamientoDescendenteRating = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => b.rating - a.rating); 
+        setArrayModPelis(arrayAux);
+    };
+      
 
     return (
         <main className={Styles.container_main}>
@@ -317,7 +319,7 @@ const Home = () => {
                 </div>
 
                 {/* vistas */} 
-                <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()} mostrarVista={true} />
+                <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()} mostrarVista={true} useStateArrayPelisSeries={arrayModPelis} />
 
                 {/* Container cards */}
                 <div className={Styles.container_cards}>
@@ -340,7 +342,7 @@ const Home = () => {
 
                 {/* ver */}
                 <div>
-                    <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/>
+                    <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()} useStateArrayPelisSeries={arrayModPelis}/>
                 </div>
 
                 {/*------------------------------PELICULAS POR VER ---------------------------------------------  */}
