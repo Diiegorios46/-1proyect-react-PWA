@@ -8,15 +8,21 @@ import { useState } from "react";
 const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
+    const [arrayGuardarPeli, setArrayGuardarPeli] = useState([]);
+
+    const [buttonAddpeli,setButtonAddpeli] = useState(false)
     
 
     const contarVistas = () => {
         return arrayModPelis.filter(prev => prev.visto == true).length
     }
+
+    const contarNoVistas = () => {
+        return arrayModPelis.filter(prev => prev.visto == false).length
+    }
     
     function handleChange(id) {
-        
-        console.log("Antes")
+
         console.log(arrayModPelis)
         
         setArrayModPelis(prev =>
@@ -25,7 +31,6 @@ const Home = () => {
           )
         );
 
-        console.log("Despues")
         console.log(arrayModPelis)
     }
 
@@ -44,14 +49,46 @@ const Home = () => {
 
     return (
         <main className={Styles.container_main}>
+            
+            {/* Modal Agregar pelicula */}
+
+            {buttonAddpeli && (
+                <div className={Styles.modal}>
+                    <div className={Styles.modal_container}>
+                        <div className={Styles.modal_header}>
+                            <h2>Agregar Pelicula/Serie</h2>
+                            <button onClick={() => setButtonAddpeli(false)}>X</button>
+                        </div>
+
+                        <form action="" className={Styles.form_agregar}>
+
+                            <label htmlFor="titulo">Título</label>
+                            <input type="text" name="titulo" id="titulo"/>
+
+                            <label htmlFor="director">Director</label>
+                            <input type="text" name="director" id="director"/>
+
+                            <label htmlFor="genero">Género</label>
+                            <input type="text" name="genero" id="genero"/>
+
+                            <label htmlFor="rating">Rating</label>
+                            <input type="text" name="rating" id="rating"/>
+
+                            <button type="button">Agregar</button>
+                        </form>
+
+                    </div>
+                </div>
+            )}
 
             <section className={Styles.container_filtros}>
-            
                 <div className={Styles.filtros}>
                     <span>Filtros</span>
                     <span>Generos : </span>
 
                     <select name="genero" id="genero">
+                        <option value="">-- Selecciona un género --</option>
+                        <option value="accion">Acción</option>
                         <option value="">-- Selecciona un género --</option>
                         <option value="accion">Acción</option>
                         <option value="aventura">Aventura</option>
@@ -97,7 +134,7 @@ const Home = () => {
 
                 {/* Agregar pelicula/serie  */}
                 <div>
-                    <button>Agregar Pelicula/Serie</button>
+                    <button onClick={() => setButtonAddpeli(true)}>Agregar Pelicula/Serie</button>
                 </div>
 
                 {/* vistas */} 
@@ -123,7 +160,7 @@ const Home = () => {
 
                 {/* ver */}
                 <div>
-                    <EstadoVisto estado={"Ver"} CantTiposGenero={contarGeneros()} />
+                    <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/>
                 </div>
 
                 <div className={Styles.container_cards}>
