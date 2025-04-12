@@ -1,4 +1,24 @@
-  
+
+export const generos = [
+  { genero: "Acción" },
+  { genero: "Aventura" },
+  { genero: "Animación" },
+  { genero: "Ciencia Ficción" },
+  { genero: "Comedia" },
+  { genero: "Crimen" },
+  { genero: "Documental" },
+  { genero: "Drama" },
+  { genero: "Fantasía" },
+  { genero: "Histórico" },
+  { genero: "Musical" },
+  { genero: "Misterio" },
+  { genero: "Romance" },
+  { genero: "Suspenso" },
+  { genero: "Terror" },
+  { genero: "Infantil" },
+  { genero: "Deporte" }
+];
+
 
 export const ArrayPelisSeries = [
     {

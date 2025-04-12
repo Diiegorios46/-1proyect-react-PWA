@@ -1,7 +1,7 @@
 import Styles from "./Home.module.css";
 import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
-import {ArrayPelisSeries } from '../../Constant/bd';
+import {ArrayPelisSeries , generos } from '../../Constant/bd';
 import { useState } from "react";
 
 
@@ -30,7 +30,15 @@ const Home = () => {
     }
 
     const contarGeneros = () => {
-         
+        let contador = 0;
+        arrayModPelis.map((prev) => {
+            generos.map((prev2) => {
+                if (prev.genero == prev2.genero) {
+                    contador++
+                }
+            })
+        })
+        return contador
     }
 
 
@@ -115,7 +123,7 @@ const Home = () => {
 
                 {/* ver */}
                 <div>
-                    <EstadoVisto estado={"Ver"} CantTiposGenero={"10"}/>
+                    <EstadoVisto estado={"Ver"} CantTiposGenero={contarGeneros()} />
                 </div>
 
                 <div className={Styles.container_cards}>
