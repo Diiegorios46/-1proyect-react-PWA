@@ -102,8 +102,8 @@ const Home = () => {
             aux = 2;
         else if (rating > 8)
             aux = 3;
-        console.log(aux)
-        console.log(rating)
+        console.log("rating :" + rating)
+        console.log("grupo: "+ aux)
         return aux
     }
 
@@ -112,46 +112,56 @@ const Home = () => {
     }
 
     const contenidoBuscado = () => {
-        let posiblesPeliculas = arrayModPelis.filter((content) => content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie);
-        console.log(posiblesPeliculas);
         return (
-                posiblesPeliculas.map((contenido2) => {
-                    return(
-                        <Card
-                            key={contenido2.id}
-                            titulo={contenido2.titulo}
-                            director={contenido2.director}
-                            genero={contenido2.genero}
-                            rating={contenido2.rating}
-                            id={contenido2.id}
-                            estadoVisto={contenido2.visto}
-                            Onclick={handleChange}
-                        />
-                    )
-                }
-            )
+            <div>
+                
+                {(() => {
+                    const arrayAux = arrayModPelis.filter(
+                        (content) =>
+                            (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
+                            (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) &&
+                            !content.visto && filtrarPorGenero(content.genero)
+                    );
+                    return arrayAux.length === 0 ? (
+                        <div>No hay resultados</div>
+                    ) : (
+                        arrayAux.map((content) => (
+                            <Card
+                                key={content.id}
+                                titulo={content.titulo}
+                                director={content.director}
+                                genero={content.genero}
+                                rating={content.rating}
+                                id={content.id}
+                                estadoVisto={content.visto}
+                                Onclick={handleChange}
+                            />
+                        ))
+                    );
+                })}
+                
+            </div>
+        );
+    };
 
-        )
-    }
-
-    const contenidoVisto = () => {
-            return(
-                arrayModPelis
-                    .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
-                    .map((contenido) => (
-                    <Card
-                        key={contenido.id}
-                        titulo={contenido.titulo}
-                        director={contenido.director}
-                        genero={contenido.genero}
-                        rating={contenido.rating}
-                        id={contenido.id}
-                        estadoVisto={contenido.visto}
-                        Onclick={handleChange}
-                    />
-                ))
-            )
-    }
+    // const contenidoVisto = () => {
+    //         return(
+    //             arrayModPelis
+    //                 .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
+    //                 .map((contenido) => (
+    //                 <Card
+    //                     key={contenido.id}
+    //                     titulo={contenido.titulo}
+    //                     director={contenido.director}
+    //                     genero={contenido.genero}
+    //                     rating={contenido.rating}
+    //                     id={contenido.id}
+    //                     estadoVisto={contenido.visto}
+    //                     Onclick={handleChange}
+    //                 />
+    //             ))
+    //         )
+    // }
 
 
     useEffect(() => {
@@ -254,7 +264,7 @@ const Home = () => {
 
                 {/* Titulo / director - Busqueda */}
                 <div className={Styles.container_inputBusqueda}>
-                    <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onChange={handleFiltroXPeli}/>
+                    <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onBlur={handleFiltroXPeli}/>
                 </div>
 
                 {contenidoBuscado()}
@@ -265,10 +275,10 @@ const Home = () => {
                 </div>
 
                 {/* vistas */} 
-                <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()}/>
+                {/* <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()}/> */}
 
                 {/* Container cards */}
-                <div className={Styles.container_cards}>
+                {/* <div className={Styles.container_cards}>
                     {arrayModPelis
                         .filter((contenido) => contenido.visto == true)
                         .map((contenido) => (
@@ -283,16 +293,16 @@ const Home = () => {
                             Onclick={handleChange}
                         />
                     ))}
-                </div>
+                </div> */}
 
                 {/* ver */}
                 <div>
-                    <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/>
+                    {/* <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/> */}
                 </div>
 
                 {/*------------------------------PELICULAS POR VER ---------------------------------------------  */}
                 <div className={Styles.container_cards}>
-                    {contenidoVisto()}
+                    {/* {contenidoVisto()} */}
                 </div>
 
 
