@@ -19,7 +19,7 @@ export const ArrayPelisSeries = [
       director: "Lilly Wachowski",
       anio: 1999,
       genero: "Ciencia Ficcion",
-      rating: 8.5,
+      rating: 3,
       tipo: "Película",
       visto: true
     },
@@ -49,7 +49,7 @@ export const ArrayPelisSeries = [
       director: "Bong Joon-ho",
       anio: 2019,
       genero: "Comedia",
-      rating: 9.1,
+      rating: 6,
       tipo: "Película",
       visto: false
     },
@@ -69,8 +69,19 @@ export const ArrayPelisSeries = [
       director: "Hermanos Duffer",
       anio: 2016,
       genero: "Ciencia Ficcion",
-      rating: 8.7,
+      rating: 0,
       tipo: "Serie",
       visto: false
     },
+    {
+      id: 7,
+      titulo: "Stranger Things",
+      director: "Hermanos Duffer",
+      anio: 2016,
+      genero: "Ciencia Ficcion",
+      rating: 4,
+      tipo: "Serie",
+      visto: false
+    },
+    
   ];

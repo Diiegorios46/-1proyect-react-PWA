@@ -11,6 +11,7 @@ const Home = () => {
     const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
+    const [buscarXRating , setBuscarXRating] = useState(0);
 
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -89,39 +90,54 @@ const Home = () => {
         })
         setButtonAddpeli(false)
     }
+    const handleRating = (e) =>  {
+        setBuscarXRating(e.target.value)
+    }
+
+    const  buscarRating = (rating) => {
+        let aux = 0;
+        if (rating < 5 && rating >= 1) 
+            aux = 1;
+        else if (rating >= 5 && rating <= 8)
+            aux = 2;
+        else if (rating > 8)
+            aux = 3;
+        console.log(aux)
+        console.log(rating)
+        return aux
+    }
 
     const handleFiltroXPeli = (e) => {
         setBuscarXPeliculaSerie(e.target.value)
-        console.log(e.target.value);
     }
 
     const contenidoBuscado = () => {
-        if (!buscarXPeliculaSerie ) return true
+        let posiblesPeliculas = arrayModPelis.filter((content) => content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie);
+        console.log(posiblesPeliculas);
         return (
-            arrayModPelis
-            .filter((content) => content.titulo == buscarXPeliculaSerie)
-            .map((content) => {
-                <div>
-                    <Card
-                        key={content.id}
-                        titulo={content.titulo}
-                        director={content.director}
-                        genero={content.genero}
-                        rating={content.rating}
-                        id={content.id}
-                        estadoVisto={content.visto}
-                        // Onclick={handleChange}
-                    />
-                </div>
+                posiblesPeliculas.map((contenido2) => {
+                    return(
+                        <Card
+                            key={contenido2.id}
+                            titulo={contenido2.titulo}
+                            director={contenido2.director}
+                            genero={contenido2.genero}
+                            rating={contenido2.rating}
+                            id={contenido2.id}
+                            estadoVisto={contenido2.visto}
+                            Onclick={handleChange}
+                        />
+                    )
+                }
+            )
 
-            })
         )
     }
 
     const contenidoVisto = () => {
             return(
                 arrayModPelis
-                    .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero))
+                    .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
                     .map((contenido) => (
                     <Card
                         key={contenido.id}
@@ -208,8 +224,19 @@ const Home = () => {
                         </select>
 
                         <label htmlFor="">Ingrese el Rating:</label>
-                        <input type="text" name="" id="" className={Styles.input}/>
-
+                        <label htmlFor=""> {"Todos"}
+                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
+                        </label>
+                        <label htmlFor=""> {" < 5"}
+                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"}/>
+                        </label>
+                        <label htmlFor=""> {"5 a 8"} 
+                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"}/>
+                        </label>
+                        <label htmlFor=""> {" > 8"}
+                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"}/>
+                        </label>
+                       
                         <label htmlFor="">Ascendente
                             <input type="checkbox" name="" id="" />
                         </label>
