@@ -12,7 +12,6 @@ const Home = () => {
 
     const contarVistas = () => {
         return arrayModPelis.filter(prev => prev.visto == true).length
-        
     }
     
     function handleChange(id) {
@@ -31,16 +30,9 @@ const Home = () => {
     }
 
     const contarGeneros = () => {
-        return arrayModPelis.reduce((acc, peli) => {
-            const genero = peli.genero;
-            if (acc[genero]) {
-                acc[genero] += 1;
-            } else {
-                acc[genero] = 1;
-            }
-            return acc;
-        }, {});
+         
     }
+
 
     return (
         <main className={Styles.container_main}>

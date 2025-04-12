@@ -4,6 +4,7 @@ import Styles from './EstadoVisto.module.css'
 const EstadoVisto = ({ estado, cantVista , CantTiposGenero }) => {
     return (
         <div className={Styles.container_vistas}>
+            
             <div> {estado} {cantVista} {CantTiposGenero} </div>
             
             <div className={Styles.container_cant_vistas_generos}>
