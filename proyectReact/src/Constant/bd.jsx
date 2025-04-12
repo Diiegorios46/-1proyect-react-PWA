@@ -21,7 +21,7 @@ export const ArrayPelisSeries = [
       genero: "Ciencia Ficcion",
       rating: 3,
       tipo: "Película",
-      visto: true
+      visto: false
     },
     {
       id: 2,
@@ -83,5 +83,15 @@ export const ArrayPelisSeries = [
       tipo: "Serie",
       visto: false
     },
+    {
+      id: 10,
+      titulo: "Matrix",
+      director: "Lilly Wachowski",
+      anio: 1999,
+      genero: "Ciencia Ficcion",
+      rating: 3,
+      tipo: "Película",
+      visto: true
+    }
     
   ];

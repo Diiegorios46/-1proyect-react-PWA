@@ -102,8 +102,6 @@ const Home = () => {
             aux = 2;
         else if (rating > 8)
             aux = 3;
-        console.log("rating :" + rating)
-        console.log("grupo: "+ aux)
         return aux
     }
 
@@ -114,16 +112,15 @@ const Home = () => {
     const contenidoBuscado = () => {
         return (
             <div>
-                
+                <h3>contenidoBuscado:</h3>
                 {(() => {
                     const arrayAux = arrayModPelis.filter(
                         (content) =>
                             (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
-                            (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) &&
-                            !content.visto && filtrarPorGenero(content.genero)
+                            (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
                     );
                     return arrayAux.length === 0 ? (
-                        <div>No hay resultados</div>
+                        <h3>No hay resultados</h3>
                     ) : (
                         arrayAux.map((content) => (
                             <Card
@@ -138,8 +135,8 @@ const Home = () => {
                             />
                         ))
                     );
-                })}
-                
+                })()}
+                <h3>FINAL</h3>
             </div>
         );
     };
