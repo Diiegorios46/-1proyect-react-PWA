@@ -2,13 +2,21 @@ import Styles from "./Home.module.css";
 import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
 import {ArrayPelisSeries , generos } from '../../Constant/bd';
-import { useState } from "react";
+
+import { useState , useEffect } from "react";
 
 
 const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
-    const [arrayGuardarPeli, setArrayGuardarPeli] = useState([]);
+    const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
+        titulo: '',
+        director: '',
+        genero: '',
+        rating: '',
+        visto: false,
+        id: Date.now()
+    });
 
     const [buttonAddpeli,setButtonAddpeli] = useState(false)
     
@@ -46,88 +54,136 @@ const Home = () => {
         return contador
     }
 
+    function handleInput(e) {
+        const { name, value } = e.target;
+        setNuevaPeliSerie({
+            ...nuevaPeliSerie,
+            [name]: value
+        })
+        console.log(nuevaPeliSerie)
+    }
+
+    const agregarPelicula = () => {
+        setArrayModPelis(prev => [...prev,{...nuevaPeliSerie, id: arrayModPelis.length }])
+        setNuevaPeliSerie({
+            titulo: '',
+            director: '',
+            genero: '',
+            rating: '',
+            visto: false,
+            id: arrayModPelis.length
+        })
+        setButtonAddpeli(false)
+    }
+
+    useEffect(() => {
+        console.log(arrayModPelis)
+    }, [arrayModPelis])
+
 
     return (
         <main className={Styles.container_main}>
             
             {/* Modal Agregar pelicula */}
 
-            {buttonAddpeli && (
-                <div className={Styles.modal}>
-                    <div className={Styles.modal_container}>
-                        <div className={Styles.modal_header}>
-                            <h2>Agregar Pelicula/Serie</h2>
-                            <button onClick={() => setButtonAddpeli(false)}>X</button>
+                {buttonAddpeli && (
+                    <div className={Styles.modal}>
+                        <div className={Styles.modal_container}>
+                            <div className={Styles.modal_header}>
+                                <h2>Agregar Pelicula/Serie</h2>
+                                <button onClick={() => setButtonAddpeli(false)}>X</button>
+                            </div>
+
+                            <form action="" className={Styles.form_agregar}>
+
+                                <label htmlFor="titulo">Título</label>
+                                <input type="text" name="titulo" id="titulo" onChange={handleInput}/>
+
+                                <label htmlFor="director">Director</label>
+                                <input type="text" name="director" id="director" onChange={handleInput}/>
+
+                                <label htmlFor="genero">Género</label>
+                                <select name="genero" id="genero" onChange={handleInput} >
+                                    <option value="">-- Selecciona un género --</option>
+                                    <option value="accion">Acción</option>
+                                    <option value="aventura">Aventura</option>
+                                    <option value="animacion">Animación</option>
+                                    <option value="ciencia-ficcion">Ciencia Ficción</option>
+                                    <option value="comedia">Comedia</option>
+                                    <option value="crimen">Crimen</option>
+                                    <option value="documental">Documental</option>
+                                    <option value="drama">Drama</option>
+                                    <option value="fantasia">Fantasía</option>
+                                    <option value="historico">Histórico</option>
+                                    <option value="musical">Musical</option>
+                                    <option value="misterio">Misterio</option>
+                                    <option value="romance">Romance</option>
+                                    <option value="suspenso">Suspenso</option>
+                                    <option value="terror">Terror</option>
+                                    <option value="infantil">Infantil</option>
+                                    <option value="deporte">Deporte</option>
+                                </select>
+
+                                <label htmlFor="rating">Rating</label>
+                                <input type="text" name="rating" id="rating" onChange={handleInput}/>
+
+                                {/* Hidden ID field */}
+                                <input type="hidden" name="id" value={nuevaPeliSerie.id} />
+
+                                <button type="button" onClick={agregarPelicula}>Agregar</button>
+                            </form>
+
                         </div>
+                    </div>
+                )}
 
-                        <form action="" className={Styles.form_agregar}>
+                <section className={Styles.container_filtros}>
+                    <div className={Styles.filtros}>
+                        <span>Filtros</span>
+                        <span>Generos : </span>
 
-                            <label htmlFor="titulo">Título</label>
-                            <input type="text" name="titulo" id="titulo"/>
+                        <select name="genero" id="genero">
+                            <option value="">-- Selecciona un género --</option>
+                            <option value="accion">Acción</option>
+                            <option value="">-- Selecciona un género --</option>
+                            <option value="accion">Acción</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="animacion">Animación</option>
+                            <option value="ciencia-ficcion">Ciencia Ficción</option>
+                            <option value="comedia">Comedia</option>
+                            <option value="crimen">Crimen</option>
+                            <option value="documental">Documental</option>
+                            <option value="drama">Drama</option>
+                            <option value="fantasia">Fantasía</option>
+                            <option value="historico">Histórico</option>
+                            <option value="musical">Musical</option>
+                            <option value="misterio">Misterio</option>
+                            <option value="romance">Romance</option>
+                            <option value="suspenso">Suspenso</option>
+                            <option value="terror">Terror</option>
+                            <option value="infantil">Infantil</option>
+                            <option value="deporte">Deporte</option>
+                        </select>
 
-                            <label htmlFor="director">Director</label>
-                            <input type="text" name="director" id="director"/>
+                        <label htmlFor="">Ingrese el Rating</label>
+                        <input type="text" name="" id="" />
 
-                            <label htmlFor="genero">Género</label>
-                            <input type="text" name="genero" id="genero"/>
+                        <label htmlFor="">Ascendente
+                            <input type="checkbox" name="" id="" />
+                        </label>
+                        
 
-                            <label htmlFor="rating">Rating</label>
-                            <input type="text" name="rating" id="rating"/>
-
-                            <button type="button">Agregar</button>
-                        </form>
+                        <label htmlFor="">Descendente
+                            <input type="checkbox" name="" id="" />
+                        </label>
+                        
 
                     </div>
-                </div>
-            )}
+                </section>
 
-            <section className={Styles.container_filtros}>
-                <div className={Styles.filtros}>
-                    <span>Filtros</span>
-                    <span>Generos : </span>
+                        <section className={Styles.container_peliculas}>
 
-                    <select name="genero" id="genero">
-                        <option value="">-- Selecciona un género --</option>
-                        <option value="accion">Acción</option>
-                        <option value="">-- Selecciona un género --</option>
-                        <option value="accion">Acción</option>
-                        <option value="aventura">Aventura</option>
-                        <option value="animacion">Animación</option>
-                        <option value="ciencia-ficcion">Ciencia Ficción</option>
-                        <option value="comedia">Comedia</option>
-                        <option value="crimen">Crimen</option>
-                        <option value="documental">Documental</option>
-                        <option value="drama">Drama</option>
-                        <option value="fantasia">Fantasía</option>
-                        <option value="historico">Histórico</option>
-                        <option value="musical">Musical</option>
-                        <option value="misterio">Misterio</option>
-                        <option value="romance">Romance</option>
-                        <option value="suspenso">Suspenso</option>
-                        <option value="terror">Terror</option>
-                        <option value="infantil">Infantil</option>
-                        <option value="deporte">Deporte</option>
-                    </select>
-
-                    <label htmlFor="">Ingrese el Rating</label>
-                    <input type="text" name="" id="" />
-
-                    <label htmlFor="">Ascendente
-                        <input type="checkbox" name="" id="" />
-                    </label>
-                    
-
-                    <label htmlFor="">Descendente
-                        <input type="checkbox" name="" id="" />
-                    </label>
-                    
-
-                </div>
-            </section>
-
-            <section className={Styles.container_peliculas}>
-
-                {/* Titulo / director - Busqueda */}
+                            {/* Titulo / director - Busqueda */}
                 <div>
                     <input type="text" value={"Titulo/director"}/>
                 </div>
