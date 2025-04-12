@@ -4,7 +4,7 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
     
     return (
         <div className={Styles.container_card}>
-            <img src="" alt="" />
+            {/* <img src="" alt="" /> */}
             <h2>{titulo}</h2>
             <p>Director : {director}</p>
             <p>Genero : {genero}</p>

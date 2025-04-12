@@ -9,6 +9,7 @@ import { useState , useEffect } from "react";
 const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
+
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
         director: '',
@@ -76,6 +77,11 @@ const Home = () => {
         setButtonAddpeli(false)
     }
 
+    const filtrarXgenero = () => {
+
+    }
+
+
     useEffect(() => {
         console.log(arrayModPelis)
     }, [arrayModPelis])
@@ -107,28 +113,17 @@ const Home = () => {
                                     <option value="">-- Selecciona un género --</option>
                                     <option value="accion">Acción</option>
                                     <option value="aventura">Aventura</option>
-                                    <option value="animacion">Animación</option>
                                     <option value="ciencia-ficcion">Ciencia Ficción</option>
                                     <option value="comedia">Comedia</option>
                                     <option value="crimen">Crimen</option>
-                                    <option value="documental">Documental</option>
                                     <option value="drama">Drama</option>
                                     <option value="fantasia">Fantasía</option>
-                                    <option value="historico">Histórico</option>
-                                    <option value="musical">Musical</option>
-                                    <option value="misterio">Misterio</option>
                                     <option value="romance">Romance</option>
-                                    <option value="suspenso">Suspenso</option>
                                     <option value="terror">Terror</option>
-                                    <option value="infantil">Infantil</option>
-                                    <option value="deporte">Deporte</option>
                                 </select>
 
                                 <label htmlFor="rating">Rating</label>
                                 <input type="text" name="rating" id="rating" onChange={handleInput}/>
-
-                                {/* Hidden ID field */}
-                                <input type="hidden" name="id" value={nuevaPeliSerie.id} />
 
                                 <button type="button" onClick={agregarPelicula}>Agregar</button>
                             </form>
@@ -146,24 +141,14 @@ const Home = () => {
                         <select name="genero" id="genero" className={Styles.select_filtros}>
                             <option value="">-- Selecciona un género --</option>
                             <option value="accion">Acción</option>
-                            <option value="">-- Selecciona un género --</option>
-                            <option value="accion">Acción</option>
                             <option value="aventura">Aventura</option>
-                            <option value="animacion">Animación</option>
                             <option value="ciencia-ficcion">Ciencia Ficción</option>
                             <option value="comedia">Comedia</option>
                             <option value="crimen">Crimen</option>
-                            <option value="documental">Documental</option>
                             <option value="drama">Drama</option>
                             <option value="fantasia">Fantasía</option>
-                            <option value="historico">Histórico</option>
-                            <option value="musical">Musical</option>
-                            <option value="misterio">Misterio</option>
                             <option value="romance">Romance</option>
-                            <option value="suspenso">Suspenso</option>
                             <option value="terror">Terror</option>
-                            <option value="infantil">Infantil</option>
-                            <option value="deporte">Deporte</option>
                         </select>
 
                         <label htmlFor="">Ingrese el Rating:</label>
@@ -186,7 +171,7 @@ const Home = () => {
 
                 {/* Titulo / director - Busqueda */}
                 <div className={Styles.container_inputBusqueda}>
-                    <input type="text" value={"Titulo/director"} className={Styles.inputBusquedaPeli}/>
+                    <input type="text" className={Styles.inputBusquedaPeli}/>
                 </div>
 
                 {/* Agregar pelicula/serie  */}
