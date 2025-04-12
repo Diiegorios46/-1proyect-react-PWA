@@ -2,7 +2,6 @@ import Styles from "./Home.module.css";
 import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
 import {ArrayPelisSeries , generos } from '../../Constant/bd';
-
 import { useState , useEffect } from "react";
 
 
@@ -21,10 +20,10 @@ const Home = () => {
         visto: false,
         id: Date.now()
     });
+    
 
     const [buttonAddpeli,setButtonAddpeli] = useState(false)
     
-
     const contarVistas = () => {
         return arrayModPelis.filter(prev => prev.visto == true).length
     }
@@ -45,7 +44,8 @@ const Home = () => {
 
         console.log(arrayModPelis)
     }
-
+    
+ 
     const contarGeneros = () => {
         let contador = 0;
         arrayModPelis.map((prev) => {
@@ -108,6 +108,42 @@ const Home = () => {
     const handleFiltroXPeli = (e) => {
         setBuscarXPeliculaSerie(e.target.value)
     }
+    
+    const ordenamientoDescendente = () => {
+        if (arrayModPelis.length === 0) {
+          setArrayModPelis([]);
+          return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => b.anio - a.anio); 
+        setArrayModPelis(arrayAux);
+      };
+
+    const ordenamientoAscendente = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => a.anio - b.anio); 
+        setArrayModPelis(arrayAux);
+    };
+
+    const ordenamientoAscendenteRating = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => a.rating - b.rating); 
+        setArrayModPelis(arrayAux);
+    };
+    const ordenamientoDescendenteRating = () => {
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+        const arrayAux = [...arrayModPelis].sort((a, b) => b.rating - a.rating); 
+        setArrayModPelis(arrayAux);
+    };
+    
 
     const contenidoBuscado = () => {
         return (
@@ -128,6 +164,7 @@ const Home = () => {
                                 titulo={content.titulo}
                                 director={content.director}
                                 genero={content.genero}
+                                anio={content.anio}
                                 rating={content.rating}
                                 id={content.id}
                                 estadoVisto={content.visto}
@@ -141,24 +178,25 @@ const Home = () => {
         );
     };
 
-    // const contenidoVisto = () => {
-    //         return(
-    //             arrayModPelis
-    //                 .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
-    //                 .map((contenido) => (
-    //                 <Card
-    //                     key={contenido.id}
-    //                     titulo={contenido.titulo}
-    //                     director={contenido.director}
-    //                     genero={contenido.genero}
-    //                     rating={contenido.rating}
-    //                     id={contenido.id}
-    //                     estadoVisto={contenido.visto}
-    //                     Onclick={handleChange}
-    //                 />
-    //             ))
-    //         )
-    // }
+    const contenidoVisto = () => {
+            return(
+                arrayModPelis
+                    .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
+                    .map((contenido) => (
+                    <Card
+                        key={contenido.id}
+                        titulo={contenido.titulo}
+                        director={contenido.director}
+                        genero={contenido.genero}
+                        rating={contenido.rating}
+                        id={contenido.id}
+                        estadoVisto={contenido.visto}
+                        anio={contenido.anio}
+                        Onclick={handleChange}
+                    />
+                ))
+            )
+    }
 
 
     useEffect(() => {
@@ -230,7 +268,7 @@ const Home = () => {
                             <option value="Terror">Terror</option>
                         </select>
 
-                        <label htmlFor="">Ingrese el Rating:</label>
+                        <h1 htmlFor="">Ordenar Rating</h1>
                         <label htmlFor=""> {"Todos"}
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
                         </label>
@@ -243,14 +281,21 @@ const Home = () => {
                         <label htmlFor=""> {" > 8"}
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"}/>
                         </label>
-                       
                         <label htmlFor="">Ascendente
-                            <input type="checkbox" name="" id="" />
+                            <input type="radio" name="OrdenarFecha" id="" onClick={ordenamientoAscendenteRating}/>
                         </label>
-                        
+                        <label htmlFor=""> Descendente 
+                            <input type="radio" name="OrdenarFecha" id="" onClick={ordenamientoDescendenteRating}/>
+                        </label>
 
-                        <label htmlFor="">Descendente
-                            <input type="checkbox" name="" id="" />
+
+                        <h1> Ordenar Año </h1>
+                        <label htmlFor=""> Ascendente año
+                            <input type="radio" name="OrdenarFecha2" id="" onClick={ordenamientoAscendente}/>
+                        </label>
+
+                        <label htmlFor="">Descendente año
+                            <input  type="radio" name="OrdenarFecha2" id="" onClick={ordenamientoDescendente}/>
                         </label>
                         
 
@@ -272,10 +317,10 @@ const Home = () => {
                 </div>
 
                 {/* vistas */} 
-                {/* <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()}/> */}
+                <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()} mostrarVista={true} />
 
                 {/* Container cards */}
-                {/* <div className={Styles.container_cards}>
+                <div className={Styles.container_cards}>
                     {arrayModPelis
                         .filter((contenido) => contenido.visto == true)
                         .map((contenido) => (
@@ -287,19 +332,20 @@ const Home = () => {
                             rating={contenido.rating}
                             id={contenido.id}
                             estadoVisto={contenido.visto}
+                            anio={contenido.anio}
                             Onclick={handleChange}
                         />
                     ))}
-                </div> */}
+                </div>
 
                 {/* ver */}
                 <div>
-                    {/* <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/> */}
+                    <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()}/>
                 </div>
 
                 {/*------------------------------PELICULAS POR VER ---------------------------------------------  */}
                 <div className={Styles.container_cards}>
-                    {/* {contenidoVisto()} */}
+                    {contenidoVisto()}
                 </div>
 
 
