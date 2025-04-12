@@ -1,13 +1,52 @@
-import Styles from "./Home.module.css"
-import Card from "../../Components/Cards/Card"
-import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto"
+import Styles from "./Home.module.css";
+import Card from "../../Components/Cards/Card";
+import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
+import {ArrayPelisSeries } from '../../Constant/bd';
+import { useState } from "react";
+
 
 const Home = () => {
+
+    const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
+    
+
+    const contarVistas = () => {
+        return arrayModPelis.filter(prev => prev.visto == true).length
+        
+    }
+    
+    function handleChange(id) {
+        
+        console.log("Antes")
+        console.log(arrayModPelis)
+        
+        setArrayModPelis(prev =>
+          prev.map(peli =>
+            peli.id === id ? { ...peli, visto: peli.visto ? false : true } : peli
+          )
+        );
+
+        console.log("Despues")
+        console.log(arrayModPelis)
+    }
+
+    const contarGeneros = () => {
+        return arrayModPelis.reduce((acc, peli) => {
+            const genero = peli.genero;
+            if (acc[genero]) {
+                acc[genero] += 1;
+            } else {
+                acc[genero] = 1;
+            }
+            return acc;
+        }, {});
+    }
+
     return (
         <main className={Styles.container_main}>
 
             <section className={Styles.container_filtros}>
-
+            
                 <div className={Styles.filtros}>
                     <span>Filtros</span>
                     <span>Generos : </span>
@@ -61,19 +100,25 @@ const Home = () => {
                     <button>Agregar Pelicula/Serie</button>
                 </div>
 
-                {/* vistas */}
-                <EstadoVisto estado={"Vistas"} CantTiposGenero={"10"}/>
+                {/* vistas */} 
+                <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()}/>
 
                 {/* Container cards */}
                 <div className={Styles.container_cards}>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
-                    <Card EstadoVisto={true}/>
+                    {arrayModPelis
+                        .filter((contenido) => contenido.visto == true) // solo los que tienen visto === true
+                        .map((contenido) => (
+                        <Card
+                            key={contenido.id}
+                            titulo={contenido.titulo}
+                            director={contenido.director}
+                            genero={contenido.genero}
+                            rating={contenido.rating}
+                            id={contenido.id}
+                            estadoVisto={contenido.visto}
+                            Onclick={handleChange}
+                        />
+                    ))}
                 </div>
 
                 {/* ver */}
@@ -81,17 +126,25 @@ const Home = () => {
                     <EstadoVisto estado={"Ver"} CantTiposGenero={"10"}/>
                 </div>
 
-                {/* container cards */}
                 <div className={Styles.container_cards}>
-                    <Card EstadoVisto={false}/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
+                    {arrayModPelis
+                        .filter((contenido) => contenido.visto == false)
+                          
+                        .map((contenido) => (
+                        <Card
+                            key={contenido.id}
+                            titulo={contenido.titulo}
+                            director={contenido.director}
+                            genero={contenido.genero}
+                            rating={contenido.rating}
+                            id={contenido.id}
+                            estadoVisto={contenido.visto}
+                            Onclick={handleChange}
+                        />
+
+                    ))}
                 </div>
+
 
             </section>
         </main>
