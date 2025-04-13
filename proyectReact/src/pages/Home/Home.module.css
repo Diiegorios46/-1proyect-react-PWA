@@ -1,3 +1,15 @@
+.contenidoFiltrado{
+    width: 50%;
+    height: 100%;
+}
+
+.container_busqueda{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+}
 
 .container_filtros{
     display: flex;

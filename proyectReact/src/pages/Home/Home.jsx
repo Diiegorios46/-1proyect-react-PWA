@@ -112,8 +112,9 @@ const Home = () => {
     
     const contenidoBuscado = () => {
         return (
-            <div>
+            <div className={Styles.container_busqueda}>
                 <h3>contenidoBuscado:</h3>
+                <div className={Styles.contenidoFiltrado}>
                 {(() => {
                     const arrayAux = arrayModPelis.filter(
                         (content) =>
@@ -139,7 +140,7 @@ const Home = () => {
                         ))
                     );
                 })()}
-                <h3>FINAL</h3>
+                    </div>
             </div>
         );
     };
