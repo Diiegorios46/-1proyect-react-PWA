@@ -7,8 +7,11 @@ import { useState , useEffect } from "react";
 
 const Home = () => {
 
-    const [arrayModPelis, setArrayModPelis] = useState(ArrayPelisSeries);
-    
+    const [arrayModPelis, setArrayModPelis] = useState(() => {
+        const storedData = localStorage.getItem("arrayPelisSeries");
+        return storedData ? JSON.parse(storedData) : ArrayPelisSeries;
+    });
+
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
@@ -21,6 +24,11 @@ const Home = () => {
         visto: false,
         id: Date.now()
     });
+
+    const updateArrayModPelis = (newArray) => {
+        setArrayModPelis(newArray);
+        localStorage.setItem("arrayPelisSeries", JSON.stringify(newArray));
+    };
     
 
     const [buttonAddpeli,setButtonAddpeli] = useState(false)
@@ -33,18 +41,12 @@ const Home = () => {
         return arrayModPelis.filter(prev => prev.visto == false).length
     }
     
-    function handleChange(id) {
-
-        console.log(arrayModPelis)
-        
-        setArrayModPelis(prev =>
-          prev.map(peli =>
-            peli.id === id ? { ...peli, visto: peli.visto ? false : true } : peli
-          )
-        );
-
-        console.log(arrayModPelis)
-    }
+   const handleChange = (id) => {
+    const updatedArray = arrayModPelis.map((peli) =>
+      peli.id === id ? { ...peli, visto: !peli.visto } : peli
+    );
+    updateArrayModPelis(updatedArray);
+  };
     
  
     const contarGeneros = () => {
@@ -80,17 +82,23 @@ const Home = () => {
     }
 
     const agregarPelicula = () => {
-        setArrayModPelis(prev => [...prev,{...nuevaPeliSerie, id: arrayModPelis.length + 1}])
-        setNuevaPeliSerie({
-            titulo: '',
-            director: '',
-            genero: '',
-            rating: '',
-            visto: false,
-            id: arrayModPelis.length +  1
-        })
-        setButtonAddpeli(false)
-    }
+    const nuevaPeli = {
+      ...nuevaPeliSerie,
+      id: arrayModPelis.length + 1,
+    };
+    const updatedArray = [...arrayModPelis, nuevaPeli];
+    updateArrayModPelis(updatedArray);
+
+    setNuevaPeliSerie({
+      titulo: "",
+      director: "",
+      genero: "",
+      rating: "",
+      visto: false,
+      id: Date.now(),
+    });
+    setButtonAddpeli(false);
+  };
     const handleRating = (e) =>  {
         setBuscarXRating(e.target.value)
     }
@@ -171,33 +179,24 @@ const Home = () => {
         }, [arrayModPelis]
     )
 
-    const ordenamientoRating = ( orden = 'asc') => {
+    const ordenamientoRating = (orden = "asc") => {
+    if (arrayModPelis.length === 0) return;
 
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-
-        const arrayAux = [...arrayModPelis].sort( (a, b) =>{
-            return orden === 'asc' ? a.rating - b.rating : b.rating - a.rating;
-        }); 
-
-        setArrayModPelis(arrayAux);
-    };
+    const sortedArray = [...arrayModPelis].sort((a, b) =>
+      orden === "asc" ? a.rating - b.rating : b.rating - a.rating
+    );
+    updateArrayModPelis(sortedArray);
+  };
     
     
-    const ordenamientoAnio = ( orden = 'asc') => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
+    const ordenamientoAnio = (orden = "asc") => {
+    if (arrayModPelis.length === 0) return;
 
-        const arrayAux = [...arrayModPelis].sort( (a, b) =>{
-            return orden === 'asc' ? a.anio - b.anio : b.anio - a.anio;
-        });
-
-        setArrayModPelis(arrayAux);
-    };
+    const sortedArray = [...arrayModPelis].sort((a, b) =>
+      orden === "asc" ? a.anio - b.anio : b.anio - a.anio
+    );
+    updateArrayModPelis(sortedArray);
+  };
 
     return (
         <main className={Styles.container_main}>
@@ -311,11 +310,11 @@ const Home = () => {
                 </div>
 
                 <EstadoVisto 
-                    estado={"Vistas"} 
-                    cantVista={contarVistas()} 
+                    estado={"Vistas"}
+                    cantVista={contarVistas()}
                     CantTiposGenero={contarGeneros()}
-                    mostrarVista={true} 
-                    useStateArrayPelisSeries={arrayModPelis} 
+                    mostrarVista={true}
+                    useStateArrayPelisSeries={arrayModPelis}
                 />
 
                 <div className={Styles.container_cards}>

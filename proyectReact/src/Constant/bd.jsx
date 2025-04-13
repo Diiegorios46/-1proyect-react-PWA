@@ -92,7 +92,7 @@ export const ArrayPelisSeries = [
   },
   {
     id: 8,
-    titulo: "El padrino 2",
+    titulo: "El Padrino 2",
     director: "Francis Ford Coppola",
     anio: 1974,
     genero: "Drama",
