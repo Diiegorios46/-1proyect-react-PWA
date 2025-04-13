@@ -9,13 +9,17 @@ const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(() => {
         const storedData = localStorage.getItem("arrayPelisSeries");
-        return storedData ? JSON.parse(storedData) : ArrayPelisSeries;
+        if (!storedData) {
+        localStorage.setItem("arrayPelisSeries", JSON.stringify(ArrayPelisSeries));
+        return ArrayPelisSeries;
+        }
+        return JSON.parse(storedData);
     });
-
+    
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
-
+    
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
         director: '',
@@ -24,13 +28,12 @@ const Home = () => {
         visto: false,
         id: Date.now()
     });
-
+    
     const updateArrayModPelis = (newArray) => {
         setArrayModPelis(newArray);
         localStorage.setItem("arrayPelisSeries", JSON.stringify(newArray));
     };
     
-
     const [buttonAddpeli,setButtonAddpeli] = useState(false)
     
     const contarVistas = () => {
@@ -82,22 +85,22 @@ const Home = () => {
     }
 
     const agregarPelicula = () => {
-    const nuevaPeli = {
-      ...nuevaPeliSerie,
-      id: arrayModPelis.length + 1,
-    };
-    const updatedArray = [...arrayModPelis, nuevaPeli];
-    updateArrayModPelis(updatedArray);
+        const nuevaPeli = {
+        ...nuevaPeliSerie,
+        id: arrayModPelis.length + 1,
+        };
+        const updatedArray = [...arrayModPelis, nuevaPeli];
+        updateArrayModPelis(updatedArray);
 
-    setNuevaPeliSerie({
-      titulo: "",
-      director: "",
-      genero: "",
-      rating: "",
-      visto: false,
-      id: Date.now(),
-    });
-    setButtonAddpeli(false);
+        setNuevaPeliSerie({
+        titulo: "",
+        director: "",
+        genero: "",
+        rating: "",
+        visto: false,
+        id: Date.now(),
+        });
+        setButtonAddpeli(false);
   };
     const handleRating = (e) =>  {
         setBuscarXRating(e.target.value)
@@ -177,7 +180,8 @@ const Home = () => {
 
     useEffect(() => {
            console.log(arrayModPelis)
-        }, [arrayModPelis]
+           console.log( console.log("Guardado en localStorage:", localStorage.getItem("arrayPelisSeries")))
+        }, [arrayModPelis],[localStorage]
     )
 
     const ordenamientoRating = (orden = "asc") => {

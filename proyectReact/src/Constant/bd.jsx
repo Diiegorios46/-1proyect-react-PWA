@@ -165,7 +165,7 @@ export const ArrayPelisSeries = [
     rating: 7.9,
     tipo: "Película",
     visto: true,
-    url: "/titanic.jpg"
+    url: "/609-titanic.webp"
   },
   {
     id: 15,
