@@ -3,6 +3,7 @@ import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
 import {ArrayPelisSeries , generos } from '../../Constant/bd';
 import { useState , useEffect } from "react";
+import Title from '../../Components/Tittle/Titte';
 
 
 const Home = () => {
@@ -124,7 +125,7 @@ const Home = () => {
     const contenidoBuscado = () => {
         return (
             <div className={Styles.container_busqueda}>
-                <h3>contenido Buscado:</h3>
+                <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
                 <div className={Styles.contenidoFiltrado}>
                 {(() => {
                     const arrayAux = arrayModPelis.filter(
@@ -253,6 +254,7 @@ const Home = () => {
                 <section className={Styles.container_filtros}>
                     <div className={Styles.filtros}>
 
+                        <Title/>
                         <span className={Styles.tittle_filtros}>Filtros</span>
                         <span>Generos : </span>
 

@@ -4,18 +4,22 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
     
     return (
         <div className={Styles.container_card}>
+
             <div className={Styles.imgCard}>
                 <img src={url} alt="" className={Styles.img}/> 
             </div>
-            <h2>{titulo}</h2>
-            <p>Director : {director}</p>
-            <p>Genero : {genero}</p>
-            <p>Rating : {rating}</p>
-            <p>anio : {anio}</p>
+            
+            <ul className={Styles.ul}>
+                <li className={Styles.ContentTitulo}>{titulo}</li>
+                <li className={Styles.ContentSubTitulo}>Director : {director}</li>
+                <li className={Styles.ContentSubTitulo}>Genero : {genero}</li>
+                <li className={Styles.ContentSubTitulo}>Rating : {rating}</li>
+                <li className={Styles.ContentSubTitulo}>({anio})</li>
+            </ul>
 
             <div className={Styles.container_botones}>
                 <div>
-                    <button>Editar</button>
+                    <button className={Styles.buttonEditar}>Editar</button>
                 </div>
                 {estadoVisto ? 
                 <div onClick={() => Onclick(id)}>❤️</div> 

@@ -1,7 +1,8 @@
 body{
     padding: 0;
     margin: 0 ; 
-    /* background-color: #161616; */
-    /* color: #fff; */
-    font-family: 'Poppins', sans-serif;
+    background-color:rgb(14, 14, 14);
+    color: #cecece;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
 }
