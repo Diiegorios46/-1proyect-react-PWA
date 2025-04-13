@@ -1,10 +1,12 @@
 import Styles from "./card.module.css";
 
-const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id , anio}) => { 
+const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id , anio , url}) => { 
     
     return (
         <div className={Styles.container_card}>
-            {/* <img src="" alt="" /> */}
+            <div>
+                <img src={url} alt="" /> 
+            </div>
             <h2>{titulo}</h2>
             <p>Director : {director}</p>
             <p>Genero : {genero}</p>
@@ -15,7 +17,6 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
                 <div>
                     <button>Editar</button>
                 </div>
-
                 {estadoVisto ? 
                 <div onClick={() => Onclick(id)}>❤️</div> 
                 :

@@ -132,6 +132,7 @@ const Home = () => {
                                 anio={content.anio}
                                 rating={content.rating}
                                 id={content.id}
+                                url={content.url}
                                 estadoVisto={content.visto}
                                 Onclick={handleChange}
                             />
@@ -157,6 +158,7 @@ const Home = () => {
                         id={contenido.id}
                         estadoVisto={contenido.visto}
                         anio={contenido.anio}
+                        url={contenido.url}
                         Onclick={handleChange}
                     />
                 ))
@@ -165,7 +167,7 @@ const Home = () => {
 
 
     useEffect(() => {
-            console.log(arrayModPelis)
+           console.log(arrayModPelis)
         }, [arrayModPelis]
     )
 
@@ -185,7 +187,6 @@ const Home = () => {
     
     
     const ordenamientoAnio = ( orden = 'asc') => {
-
         if (arrayModPelis.length === 0) {
             setArrayModPelis([]);
             return;
@@ -193,7 +194,7 @@ const Home = () => {
 
         const arrayAux = [...arrayModPelis].sort( (a, b) =>{
             return orden === 'asc' ? a.anio - b.anio : b.anio - a.anio;
-        }); 
+        });
 
         setArrayModPelis(arrayAux);
     };
@@ -202,14 +203,15 @@ const Home = () => {
         <main className={Styles.container_main}>
             
             {/* Modal Agregar pelicula */}
-
                 {buttonAddpeli && (
                     <div className={Styles.modal}>
                         <div className={Styles.modal_container}>
+
                             <div className={Styles.modal_header}>
                                 <h2>Agregar Pelicula/Serie</h2>
                                 <button onClick={() => setButtonAddpeli(false)}>X</button>
                             </div>
+
 
                             <form action="" className={Styles.form_agregar}>
 
@@ -243,9 +245,10 @@ const Home = () => {
                     </div>
                 )}
 
-                {/* -----------------------FILTROS---------------------------------------------------------------------- */}
+                {/* -----------------------------------------FILTROS--------------------------------------------------------------- */}
                 <section className={Styles.container_filtros}>
                     <div className={Styles.filtros}>
+
                         <span className={Styles.tittle_filtros}>Filtros</span>
                         <span>Generos : </span>
 
@@ -281,9 +284,7 @@ const Home = () => {
                         <label htmlFor=""> Descendente 
                             <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
                         </label>
-
-
-                        <h1> Ordenar Año </h1>
+                        <leyend> Ordenar Año </leyend>
                         <label htmlFor=""> Ascendente año
                             <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')}/>
                         </label>
@@ -292,7 +293,6 @@ const Home = () => {
                             <input  type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')}/>
                         </label>
                         
-
                     </div>
                 </section>
 
@@ -310,10 +310,14 @@ const Home = () => {
                     <button className={Styles.buttonAgregarPeli} onClick={() => setButtonAddpeli(true)}>Agregar Pelicula/Serie</button>
                 </div>
 
-                {/* vistas */} 
-                <EstadoVisto estado={"Vistas"} cantVista={contarVistas()} CantTiposGenero={contarGeneros()} mostrarVista={true} useStateArrayPelisSeries={arrayModPelis} />
+                <EstadoVisto 
+                    estado={"Vistas"} 
+                    cantVista={contarVistas()} 
+                    CantTiposGenero={contarGeneros()}
+                    mostrarVista={true} 
+                    useStateArrayPelisSeries={arrayModPelis} 
+                />
 
-                {/* Container cards */}
                 <div className={Styles.container_cards}>
                     {arrayModPelis
                         .filter((contenido) => contenido.visto == true)
@@ -327,17 +331,16 @@ const Home = () => {
                             id={contenido.id}
                             estadoVisto={contenido.visto}
                             anio={contenido.anio}
+                            url={contenido.url}
                             Onclick={handleChange}
                         />
                     ))}
                 </div>
 
-                {/* ver */}
                 <div>
                     <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()} useStateArrayPelisSeries={arrayModPelis}/>
                 </div>
 
-                {/*------------------------------PELICULAS POR VER ---------------------------------------------  */}
                 <div className={Styles.container_cards}>
                     {contenidoVisto()}
                 </div>
