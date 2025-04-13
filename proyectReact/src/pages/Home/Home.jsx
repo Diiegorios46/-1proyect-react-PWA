@@ -169,42 +169,34 @@ const Home = () => {
         }, [arrayModPelis]
     )
 
-    const ordenamientoDescendente = () => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => b.anio - a.anio); 
-        setArrayModPelis(arrayAux);
-    };
-      
-    const ordenamientoAscendente = () => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => a.anio - b.anio); 
-        setArrayModPelis(arrayAux);
-    };
-      
-    const ordenamientoAscendenteRating = () => {
-        if (arrayModPelis.length === 0) {
-            setArrayModPelis([]);
-            return;
-        }
-        const arrayAux = [...arrayModPelis].sort((a, b) => a.rating - b.rating); 
-        setArrayModPelis(arrayAux);
-    };
+    const ordenamientoRating = ( orden = 'asc') => {
 
-    const ordenamientoDescendenteRating = () => {
         if (arrayModPelis.length === 0) {
             setArrayModPelis([]);
             return;
         }
-        const arrayAux = [...arrayModPelis].sort((a, b) => b.rating - a.rating); 
+
+        const arrayAux = [...arrayModPelis].sort( (a, b) =>{
+            return orden === 'asc' ? a.rating - b.rating : b.rating - a.rating;
+        }); 
+
         setArrayModPelis(arrayAux);
     };
-      
+    
+    
+    const ordenamientoAnio = ( orden = 'asc') => {
+
+        if (arrayModPelis.length === 0) {
+            setArrayModPelis([]);
+            return;
+        }
+
+        const arrayAux = [...arrayModPelis].sort( (a, b) =>{
+            return orden === 'asc' ? a.anio - b.anio : b.anio - a.anio;
+        }); 
+
+        setArrayModPelis(arrayAux);
+    };
 
     return (
         <main className={Styles.container_main}>
@@ -284,20 +276,20 @@ const Home = () => {
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"}/>
                         </label>
                         <label htmlFor="">Ascendente
-                            <input type="radio" name="OrdenarFecha" id="" onClick={ordenamientoAscendenteRating}/>
+                            <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
                         </label>
                         <label htmlFor=""> Descendente 
-                            <input type="radio" name="OrdenarFecha" id="" onClick={ordenamientoDescendenteRating}/>
+                            <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
                         </label>
 
 
                         <h1> Ordenar Año </h1>
                         <label htmlFor=""> Ascendente año
-                            <input type="radio" name="OrdenarFecha2" id="" onClick={ordenamientoAscendente}/>
+                            <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')}/>
                         </label>
 
                         <label htmlFor="">Descendente año
-                            <input  type="radio" name="OrdenarFecha2" id="" onClick={ordenamientoDescendente}/>
+                            <input  type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')}/>
                         </label>
                         
 
