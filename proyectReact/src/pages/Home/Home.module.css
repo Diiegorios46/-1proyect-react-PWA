@@ -1,12 +1,13 @@
 .contenidoFiltrado{
-    width: 50%;
-    height: 100%;
+    width: 25%;
+    height: 90%;
+    margin-left: 2%;
 }
 
 .container_busqueda{
     display: flex;
-    justify-items: center;
-    align-items: center;
+    justify-items: start;
+    align-items: start;
     flex-direction: column;
     height: auto;
 }
@@ -17,10 +18,16 @@
     border: 1px solid black;
 }
 
-.container_peliculas{
-    border: 1px solid black;
+.container_peliculas {
     display: grid;
+    grid-template-rows: auto 1fr auto auto; /* ajustá según cuántas filas tengas */
+    border: 1px solid black;
+    grid-template-rows: auto 600px auto 50px auto ;
+    height: auto;
+}
 
+.container_vistas{
+    height: 50px;
 }
 
 .container_main{

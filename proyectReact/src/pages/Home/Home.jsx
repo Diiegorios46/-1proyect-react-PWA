@@ -19,6 +19,7 @@ const Home = () => {
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
+    const [buttonAddpeli,setButtonAddpeli] = useState(false)
     
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -34,7 +35,6 @@ const Home = () => {
         localStorage.setItem("arrayPelisSeries", JSON.stringify(newArray));
     };
     
-    const [buttonAddpeli,setButtonAddpeli] = useState(false)
     
     const contarVistas = () => {
         return arrayModPelis.filter(prev => prev.visto == true).length
@@ -124,7 +124,7 @@ const Home = () => {
     const contenidoBuscado = () => {
         return (
             <div className={Styles.container_busqueda}>
-                <h3>contenidoBuscado:</h3>
+                <h3>contenido Buscado:</h3>
                 <div className={Styles.contenidoFiltrado}>
                 {(() => {
                     const arrayAux = arrayModPelis.filter(
@@ -342,7 +342,12 @@ const Home = () => {
                 </div>
 
                 <div>
-                    <EstadoVisto estado={"Ver"} cantVista={contarNoVistas()} CantTiposGenero={contarGeneros()} useStateArrayPelisSeries={arrayModPelis}/>
+                    <EstadoVisto 
+                        estado={"Ver"} 
+                        cantVista={contarNoVistas()} 
+                        CantTiposGenero={contarGeneros()} 
+                        useStateArrayPelisSeries={arrayModPelis}
+                    />
                 </div>
 
                 <div className={Styles.container_cards}>
