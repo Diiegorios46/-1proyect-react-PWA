@@ -1,6 +1,7 @@
 
 .container_card{
-    border : 1px solid black;
+    height: 97%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .container_botones
@@ -8,4 +9,14 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
+}
+
+.imgCard{
+    width: 100%;
+    height: 50%;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
 }
