@@ -98,7 +98,6 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid rgb(46, 46, 46);
     margin-top: 3%;
 }
 
@@ -109,9 +108,8 @@
 }
 
 .buttonAgregarPeli {
-    background-color: #000000;
+    background-color: #212121;
     color: #fff;
-    border: 2px solid #fff;
     font-weight: bold;
     font-size: 1rem;
     padding: 0.5rem 1rem;
@@ -121,13 +119,6 @@
     transition: all 0.3s ease;
   }
   
-  .buttonAgregarPeli:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
-  }
-  
-
 .inputBusquedaPeli{
     width: 50%;
     height: 40px;
@@ -168,6 +159,7 @@
     justify-content: center;
     align-items: center;
     color: #000000;
+    z-index: 3;
 }
 
 .modal_container{
@@ -272,3 +264,6 @@
   
 
   
+@media screen {
+    
+}
