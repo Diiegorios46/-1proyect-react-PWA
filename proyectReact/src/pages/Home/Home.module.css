@@ -141,7 +141,7 @@
 .container_cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 30px;
     padding: 10px;
     background-color: #242424;
 }
