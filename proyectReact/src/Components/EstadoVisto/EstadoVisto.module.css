@@ -1,12 +1,15 @@
 .container_vistas{
     display: flex;
     justify-content: start;
-    border: 1px solid black;
+    background-color: #fff;
+    border-radius: 5px;
+    align-items: center;
+    color: black;
 }
 
 .container_cant_vistas_generos {
     display: flex;
-    border: 1px solid black;
+    align-items: center;
     gap: 10px;
     margin-left: auto; /* Mueve el contenedor hacia la derecha */
 }

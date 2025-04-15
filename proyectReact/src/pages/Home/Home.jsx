@@ -1,18 +1,18 @@
 import Styles from "./Home.module.css";
 import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
-import {ArrayPelisSeries , generos } from '../../Constant/bd';
 import { useState , useEffect } from "react";
 import Title from '../../Components/Tittle/Titte';
+import {library , generos , buscarRating } from '../../Constant/constant';
 
 
 const Home = () => {
 
-    const [arrayModPelis, setArrayModPelis] = useState(() => {
-        const storedData = localStorage.getItem("arrayPelisSeries");
+    const [moviesAndSeries, setMoviesAndSeries] = useState(() => {
+        const storedData = localStorage.getItem("library");
         if (!storedData) {
-        localStorage.setItem("arrayPelisSeries", JSON.stringify(ArrayPelisSeries));
-        return ArrayPelisSeries;
+        localStorage.setItem("library", JSON.stringify(library));
+        return library;
         }
         return JSON.parse(storedData);
     });
@@ -20,7 +20,7 @@ const Home = () => {
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
-    const [buttonAddpeli,setButtonAddpeli] = useState(false)
+    const [openModalButton,setOpenModalButton] = useState(false)
     
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -32,30 +32,21 @@ const Home = () => {
     });
     
     const updateArrayModPelis = (newArray) => {
-        setArrayModPelis(newArray);
-        localStorage.setItem("arrayPelisSeries", JSON.stringify(newArray));
+        setMoviesAndSeries(newArray);
+        localStorage.setItem("library", JSON.stringify(newArray));
     };
     
     
-    const contarVistas = () => {
-        return arrayModPelis.filter(prev => prev.visto == true).length
-    }
-
-    const contarNoVistas = () => {
-        return arrayModPelis.filter(prev => prev.visto == false).length
-    }
-    
    const handleChange = (id) => {
-    const updatedArray = arrayModPelis.map((peli) =>
+    const updatedArray = moviesAndSeries.map((peli) =>
       peli.id === id ? { ...peli, visto: !peli.visto } : peli
     );
     updateArrayModPelis(updatedArray);
   };
     
- 
     const contarGeneros = () => {
         let contador = 0;
-        arrayModPelis.map((prev) => {
+        moviesAndSeries.map((prev) => {
             generos.map((prev2) => {
                 if (prev.genero == prev2.genero) {
                     contador++
@@ -88,9 +79,9 @@ const Home = () => {
     const agregarPelicula = () => {
         const nuevaPeli = {
         ...nuevaPeliSerie,
-        id: arrayModPelis.length + 1,
+        id: moviesAndSeries.length + 1,
         };
-        const updatedArray = [...arrayModPelis, nuevaPeli];
+        const updatedArray = [...moviesAndSeries, nuevaPeli];
         updateArrayModPelis(updatedArray);
 
         setNuevaPeliSerie({
@@ -101,67 +92,83 @@ const Home = () => {
         visto: false,
         id: Date.now(),
         });
-        setButtonAddpeli(false);
+        
+        setOpenModalButton(false);
   };
+
+
     const handleRating = (e) =>  {
         setBuscarXRating(e.target.value)
-    }
-
-    const  buscarRating = (rating) => {
-        let aux = 0;
-        if (rating < 5 && rating >= 1) 
-            aux = 1;
-        else if (rating >= 5 && rating <= 8)
-            aux = 2;
-        else if (rating > 8)
-            aux = 3;
-        return aux
     }
 
     const handleFiltroXPeli = (e) => {
         setBuscarXPeliculaSerie(e.target.value)
     }
     
-    const contenidoBuscado = () => {
+    const countView = (seeMovie) => {
+        if(seeMovie){
+            return filterForContentView("view").length
+        }else{
+            return filterForContentView("noView").length
+        }       
+    }
+
+    const filterForContentView = (view) => {
+        return (view === "view") ? moviesAndSeries.filter((contenido) => contenido.visto) : moviesAndSeries.filter(prev => !prev.visto);
+    }
+
+    const filterForMovie = () => {
+        const arrayAux = moviesAndSeries.filter(
+            (content) =>
+                (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
+                (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
+        );
+        return arrayAux;
+    }
+
+    const renderContentFilterForWord = () => {
+        const result = filterForMovie();
+
+        if (result.length === 0) {
+            return <h3>No hay resultados</h3>
+        } else{
+            return result.map((content) => (
+                <Card
+                    key={content.id}
+                    titulo={content.titulo}
+                    director={content.director}
+                    genero={content.genero}
+                    anio={content.anio}
+                    rating={content.rating}
+                    id={content.id}
+                    url={content.url}
+                    estadoVisto={content.visto}
+                    Onclick={handleChange}
+                />
+            ))
+        }   
+
+    }
+
+    const renderContentFind = () => {
         return (
             <div className={Styles.container_busqueda}>
                 <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
                 <div className={Styles.contenidoFiltrado}>
-                {(() => {
-                    const arrayAux = arrayModPelis.filter(
-                        (content) =>
-                            (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
-                            (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
-                    );
-                    return arrayAux.length === 0 ? (
-                        <h3>No hay resultados</h3>
-                    ) : (
-                        arrayAux.map((content) => (
-                            <Card
-                                key={content.id}
-                                titulo={content.titulo}
-                                director={content.director}
-                                genero={content.genero}
-                                anio={content.anio}
-                                rating={content.rating}
-                                id={content.id}
-                                url={content.url}
-                                estadoVisto={content.visto}
-                                Onclick={handleChange}
-                            />
-                        ))
-                    );
-                })()}
-                    </div>
+                {renderContentFilterForWord()}
+                </div>
             </div>
         );
     };
 
-    const contenidoVisto = () => {
+    const filterxContentNotView = () => {
+        return moviesAndSeries.filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
+    }
+
+    const renderContentView = () => {
+        const content = filterxContentNotView()
             return(
-                arrayModPelis
-                    .filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
-                    .map((contenido) => (
+                content.map((contenido) => (
                     <Card
                         key={contenido.id}
                         titulo={contenido.titulo}
@@ -180,15 +187,15 @@ const Home = () => {
 
 
     useEffect(() => {
-           console.log(arrayModPelis)
-           console.log( console.log("Guardado en localStorage:", localStorage.getItem("arrayPelisSeries")))
-        }, [arrayModPelis],[localStorage]
+           console.log(moviesAndSeries)
+           console.log( console.log("Guardado en localStorage:", localStorage.getItem("library")))
+        }, [moviesAndSeries],[localStorage]
     )
 
     const ordenamientoRating = (orden = "asc") => {
-    if (arrayModPelis.length === 0) return;
+    if (moviesAndSeries.length === 0) return;
 
-    const sortedArray = [...arrayModPelis].sort((a, b) =>
+    const sortedArray = [...moviesAndSeries].sort((a, b) =>
       orden === "asc" ? a.rating - b.rating : b.rating - a.rating
     );
     updateArrayModPelis(sortedArray);
@@ -196,9 +203,9 @@ const Home = () => {
     
     
     const ordenamientoAnio = (orden = "asc") => {
-    if (arrayModPelis.length === 0) return;
+    if (moviesAndSeries.length === 0) return;
 
-    const sortedArray = [...arrayModPelis].sort((a, b) =>
+    const sortedArray = [...moviesAndSeries].sort((a, b) =>
       orden === "asc" ? a.anio - b.anio : b.anio - a.anio
     );
     updateArrayModPelis(sortedArray);
@@ -208,13 +215,13 @@ const Home = () => {
         <main className={Styles.container_main}>
             
             {/* Modal Agregar pelicula */}
-                {buttonAddpeli && (
+                {openModalButton && (
                     <div className={Styles.modal}>
                         <div className={Styles.modal_container}>
 
                             <div className={Styles.modal_header}>
                                 <h2>Agregar Pelicula/Serie</h2>
-                                <button onClick={() => setButtonAddpeli(false)}>X</button>
+                                <button onClick={() => setOpenModalButton(false)}>X</button>
                             </div>
 
 
@@ -290,7 +297,7 @@ const Home = () => {
                         <label htmlFor=""> Descendente 
                             <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
                         </label>
-                        <leyend> Ordenar Año </leyend>
+                        <legend> Ordenar Año </legend>
                         <label htmlFor=""> Ascendente año
                             <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')}/>
                         </label>
@@ -309,25 +316,23 @@ const Home = () => {
                     <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onBlur={handleFiltroXPeli}/>
                 </div>
 
-                {contenidoBuscado()}
+                {renderContentFind()}
 
                 {/* Agregar pelicula/serie  */}
                 <div className={Styles.container_buttonAgregarPeli}>
-                    <button className={Styles.buttonAgregarPeli} onClick={() => setButtonAddpeli(true)}>Agregar Pelicula/Serie</button>
+                    <button className={Styles.buttonAgregarPeli} onClick={() => setOpenModalButton(true)}>Agregar Pelicula/Serie</button>
                 </div>
 
                 <EstadoVisto 
                     estado={"Vistas"}
-                    cantVista={contarVistas()}
+                    cantVista={countView(true)}
                     CantTiposGenero={contarGeneros()}
                     mostrarVista={true}
-                    useStateArrayPelisSeries={arrayModPelis}
+                    useStateArrayPelisSeries={moviesAndSeries}
                 />
 
                 <div className={Styles.container_cards}>
-                    {arrayModPelis
-                        .filter((contenido) => contenido.visto == true)
-                        .map((contenido) => (
+                    {filterForContentView("view").map((contenido) => (
                         <Card
                             key={contenido.id}
                             titulo={contenido.titulo}
@@ -346,14 +351,14 @@ const Home = () => {
                 <div>
                     <EstadoVisto 
                         estado={"Ver"} 
-                        cantVista={contarNoVistas()} 
+                        cantVista={countView(false)} 
                         CantTiposGenero={contarGeneros()} 
-                        useStateArrayPelisSeries={arrayModPelis}
+                        useStateArrayPelisSeries={moviesAndSeries}
                     />
                 </div>
 
                 <div className={Styles.container_cards}>
-                    {contenidoVisto()}
+                    {renderContentView()}
                 </div>
 
 
