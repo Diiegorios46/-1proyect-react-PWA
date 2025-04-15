@@ -47,8 +47,8 @@
     display : flex;
     flex-direction: column;
     gap: 15px;
-    background-color:rgb(7, 7, 7);
-    
+    background-color: #242424;
+    border-radius: 1rem;
 }
 
 .tittle_filtros{
@@ -81,19 +81,37 @@
     display: flex;
     gap: 10px;
     margin: 2%;
-
 }
 
-.buttonAgregarPeli{
-    height: 40px;
-    border-radius: 10px;
+.buttonAgregarPeli {
+    background-color: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-}
+    transition: all 0.3s ease;
+  }
+  
+  .buttonAgregarPeli:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+  }
+  
 
 .inputBusquedaPeli{
     width: 50%;
     height: 40px;
     border-radius: 5px;
+    background-image: url('/lupa.png');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 20px 20px;
+    padding-left: 40px; /* espacio para la imagen */
 }
 
 .container_cards{
@@ -101,8 +119,16 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
     padding: 10px;
+    background-color: #242424;
 }
 
+.containerEstadoVisto{
+    font-size: x-large;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
 .modal{
     position: fixed;
@@ -114,6 +140,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #000000;
 }
 
 .modal_container{
@@ -123,12 +150,16 @@
     width: 80%;
     max-width: 600px;
     height: 80%;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .form_agregar{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5%;
+    height: 100%;
 }
 
 .modal_header{
@@ -136,3 +167,79 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.button {
+    background-color: #1e88e5; /* azul vibrante */
+    color: white;
+    border: 2px solid #1565c0; /* azul más oscuro */
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+  }
+
+  .inputForm{
+
+  }
+
+  .inputForm {
+    width: auto;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #1b1b1b;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .inputForm:focus {
+    border-color: #1b1b1b;
+    box-shadow: 0 0 10px rgba(21, 101, 192, 0.4);
+    background-color: #fff;
+  }
+
+  .select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #1b1b1b;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    appearance: none; /* quita el estilo nativo */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .select:focus {
+    border-color: #1b1b1b;
+    box-shadow: 0 0 10px rgba(21, 101, 192, 0.4);
+    background-color: #fff;
+  }
+  
+  .btnCerrar {
+    background-color: transparent;
+    border: none;
+    color: #ff0000cc;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  }
+  

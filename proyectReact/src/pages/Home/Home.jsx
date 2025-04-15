@@ -221,20 +221,20 @@ const Home = () => {
 
                             <div className={Styles.modal_header}>
                                 <h2>Agregar Pelicula/Serie</h2>
-                                <button onClick={() => setOpenModalButton(false)}>X</button>
-                            </div>
+                                <button onClick={() => setOpenModalButton(false)} className={Styles.btnCerrar}>X</button>
+                            </div> 
 
 
                             <form action="" className={Styles.form_agregar}>
 
                                 <label htmlFor="titulo">Título</label>
-                                <input type="text" name="titulo" id="titulo" onChange={handleInput}/>
+                                <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm}/>
 
                                 <label htmlFor="director">Director</label>
-                                <input type="text" name="director" id="director" onChange={handleInput}/>
+                                <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm}/>
 
                                 <label htmlFor="genero">Género</label>
-                                <select name="genero" id="genero" onChange={handleInput} >
+                                <select name="genero" id="genero" onChange={handleInput} className={Styles.select} >
                                     <option value="">-- Selecciona un género --</option>
                                     <option value="Accion">Acción</option>
                                     <option value="Aventura">Aventura</option>
@@ -248,9 +248,9 @@ const Home = () => {
                                 </select>
 
                                 <label htmlFor="rating">Rating</label>
-                                <input type="text" name="rating" id="rating" onChange={handleInput}/>
+                                <input type="text" name="rating" id="rating" onChange={handleInput} className={Styles.inputForm} />
 
-                                <button type="button" onClick={agregarPelicula}>Agregar</button>
+                                <button type="button" onClick={agregarPelicula} className={Styles.button}>Agregar</button>
                             </form>
 
                         </div>
@@ -324,7 +324,7 @@ const Home = () => {
                 </div>
 
                 <EstadoVisto 
-                    estado={"Vistas"}
+                    estado={"Peliculas / Series Vistas"}
                     cantVista={countView(true)}
                     CantTiposGenero={contarGeneros()}
                     mostrarVista={true}
@@ -348,9 +348,9 @@ const Home = () => {
                     ))}
                 </div>
 
-                <div>
+                <div className={Styles.containerEstadoVisto}>
                     <EstadoVisto 
-                        estado={"Ver"} 
+                        estado={"Peliculas - Series Por Ver"} 
                         cantVista={countView(false)} 
                         CantTiposGenero={contarGeneros()} 
                         useStateArrayPelisSeries={moviesAndSeries}
