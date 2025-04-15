@@ -145,6 +145,8 @@
     gap: 30px;
     padding: 10px;
     background-color: #242424;
+    margin-right: 2%;
+    border-radius: 5px;
 }
 
 .containerEstadoVisto{
