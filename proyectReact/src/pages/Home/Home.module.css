@@ -41,14 +41,15 @@
 }
 
 .filtros{
-    width: 90%;
-    height: auto;
+    min-width: 22%;
+    height: 100%;
     border-right: 1px solid rgb(46, 46, 46);
-    display : flex;
+    display: flex;
     flex-direction: column;
     gap: 15px;
     background-color: #242424;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    position: fixed;
 }
 
 .tittle_filtros{
