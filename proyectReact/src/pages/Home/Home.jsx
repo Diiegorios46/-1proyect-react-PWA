@@ -235,7 +235,7 @@ const Home = () => {
 
                                 <label htmlFor="genero">Género</label>
                                 <select name="genero" id="genero" onChange={handleInput} className={Styles.select} >
-                                    <option value="">-- Selecciona un género --</option>
+                                    <option value="">Genero</option>
                                     <option value="Accion">Acción</option>
                                     <option value="Aventura">Aventura</option>
                                     <option value="Ciencia-Ficcion">Ciencia Ficción</option>
@@ -263,10 +263,10 @@ const Home = () => {
 
                         <Title/>
                         <span className={Styles.tittle_filtros}>Filtros</span>
-                        <span>Generos : </span>
+                        <span className={Styles.subTittle_filtros}>Generos : </span>
 
                         <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
-                            <option value="">-- Selecciona un género --</option>
+                            <option value=""> Generos </option>
                             <option value="Accion">Acción</option>
                             <option value="Aventura">Aventura</option>
                             <option value="Ciencia Ficcion">Ciencia Ficción</option>
@@ -278,31 +278,31 @@ const Home = () => {
                             <option value="Terror">Terror</option>
                         </select>
 
-                        <h1 htmlFor="">Ordenar Rating</h1>
-                        <label htmlFor=""> {"Todos"}
+                        <h1 htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</h1>
+                        <label htmlFor="" className={Styles.Inputs}> {"Todos"}
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
                         </label>
-                        <label htmlFor=""> {" < 5"}
+                        <label htmlFor="" className={Styles.Inputs}> {" < 5"}
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"}/>
                         </label>
-                        <label htmlFor=""> {"5 a 8"} 
+                        <label htmlFor="" className={Styles.Inputs}> {"5 a 8"} 
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"}/>
                         </label>
-                        <label htmlFor=""> {" > 8"}
+                        <label htmlFor="" className={Styles.Inputs}> {" > 8"}
                             <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"}/>
                         </label>
-                        <label htmlFor="">Ascendente
+                        <label htmlFor="" className={Styles.Inputs}>Ascendente
                             <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
                         </label>
-                        <label htmlFor=""> Descendente 
+                        <label htmlFor="" className={Styles.Inputs}> Descendente 
                             <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
                         </label>
-                        <legend> Ordenar Año </legend>
-                        <label htmlFor=""> Ascendente año
+                        <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
+                        <label htmlFor="" className={Styles.Inputs}> Ascendente año
                             <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')}/>
                         </label>
 
-                        <label htmlFor="">Descendente año
+                        <label htmlFor="" className={Styles.Inputs}>Descendente año
                             <input  type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')}/>
                         </label>
                         
