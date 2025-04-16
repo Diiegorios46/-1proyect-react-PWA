@@ -1,4 +1,17 @@
 
+
+export const  buscarRating = (rating) => {
+  let aux = 0;
+  if (rating < 5 && rating >= 1) 
+    aux = 1;
+  else if (rating >= 5 && rating <= 8)
+    aux = 2;
+  else if (rating > 8)
+    aux = 3;
+  return aux
+}
+
+
 export const generos = [
   { genero: "Accion" },
   { genero: "Aventura" },
@@ -12,13 +25,14 @@ export const generos = [
 ];
 
 
-export const ArrayPelisSeries = [
+
+export const library = [
   {
     id: 1,
     titulo: "Matrix",
     director: "Lilly Wachowski",
     anio: 1999,
-    genero: "Ciencia Ficción",
+    genero: "Ciencia Ficcion",
     rating: 3,
     tipo: "Película",
     visto: false,
@@ -40,7 +54,7 @@ export const ArrayPelisSeries = [
     titulo: "Inception",
     director: "Christopher Nolan",
     anio: 2010,
-    genero: "Ciencia Ficción",
+    genero: "Ciencia Ficcion",
     rating: 9.0,
     tipo: "Película",
     visto: false,
@@ -51,7 +65,7 @@ export const ArrayPelisSeries = [
     titulo: "Parasite",
     director: "Bong Joon-ho",
     anio: 2019,
-    genero: "Thriller",
+    genero: "Crimen",
     rating: 8.6,
     tipo: "Película",
     visto: true,
@@ -62,7 +76,7 @@ export const ArrayPelisSeries = [
     titulo: "Stranger Things",
     director: "Hermanos Duffer",
     anio: 2016,
-    genero: "Ciencia Ficción",
+    genero: "Ciencia Ficcion",
     rating: 8.5,
     tipo: "Serie",
     visto: true,
@@ -84,7 +98,7 @@ export const ArrayPelisSeries = [
     titulo: "The Last of Us",
     director: "Craig Mazin",
     anio: 2023,
-    genero: "Drama / Post-apocalíptico",
+    genero: "Drama",
     rating: 8.8,
     tipo: "Serie",
     visto: false,
@@ -106,7 +120,7 @@ export const ArrayPelisSeries = [
     titulo: "The Dark Knight",
     director: "Christopher Nolan",
     anio: 2008,
-    genero: "Acción",
+    genero: "Accion",
     rating: 9.0,
     tipo: "Película",
     visto: true,
@@ -117,7 +131,7 @@ export const ArrayPelisSeries = [
     titulo: "Chernobyl",
     director: "Craig Mazin",
     anio: 2019,
-    genero: "Drama / Historia",
+    genero: "Drama",
     rating: 9.4,
     tipo: "Serie",
     visto: false,
@@ -128,7 +142,7 @@ export const ArrayPelisSeries = [
     titulo: "Pulp Fiction",
     director: "Quentin Tarantino",
     anio: 1994,
-    genero: "Crimen / Drama",
+    genero: "Crimen",
     rating: 8.9,
     tipo: "Película",
     visto: true,
@@ -139,7 +153,7 @@ export const ArrayPelisSeries = [
     titulo: "Forrest Gump",
     director: "Robert Zemeckis",
     anio: 1994,
-    genero: "Drama / Romance",
+    genero: "Romance",
     rating: 8.8,
     tipo: "Película",
     visto: true,
@@ -150,7 +164,7 @@ export const ArrayPelisSeries = [
     titulo: "Fight Club",
     director: "David Fincher",
     anio: 1999,
-    genero: "Drama / Psicológico",
+    genero: "Drama",
     rating: 8.8,
     tipo: "Película",
     visto: false,
@@ -161,7 +175,7 @@ export const ArrayPelisSeries = [
     titulo: "Titanic",
     director: "James Cameron",
     anio: 1997,
-    genero: "Drama / Romance",
+    genero: "Romance",
     rating: 7.9,
     tipo: "Película",
     visto: true,
@@ -172,7 +186,7 @@ export const ArrayPelisSeries = [
     titulo: "Gladiator",
     director: "Ridley Scott",
     anio: 2000,
-    genero: "Acción / Drama",
+    genero: "Accion",
     rating: 8.5,
     tipo: "Película",
     visto: false,
@@ -183,7 +197,7 @@ export const ArrayPelisSeries = [
     titulo: "El Señor de los Anillos: El Retorno del Rey",
     director: "Peter Jackson",
     anio: 2003,
-    genero: "Fantasía / Aventura",
+    genero: "Fantasia",
     rating: 9.0,
     tipo: "Película",
     visto: true,
@@ -194,7 +208,7 @@ export const ArrayPelisSeries = [
     titulo: "Star Wars: Episodio IV - Una Nueva Esperanza",
     director: "George Lucas",
     anio: 1977,
-    genero: "Ciencia Ficción / Aventura",
+    genero: "Ciencia Ficcion",
     rating: 8.6,
     tipo: "Película",
     visto: false,
@@ -205,7 +219,7 @@ export const ArrayPelisSeries = [
     titulo: "El Resplandor",
     director: "Stanley Kubrick",
     anio: 1980,
-    genero: "Terror / Psicológico",
+    genero: "Terror",
     rating: 8.4,
     tipo: "Película",
     visto: true,
@@ -216,7 +230,7 @@ export const ArrayPelisSeries = [
     titulo: "La Lista de Schindler",
     director: "Steven Spielberg",
     anio: 1993,
-    genero: "Drama / Histórico",
+    genero: "Drama",
     rating: 9.0,
     tipo: "Película",
     visto: false,
@@ -227,10 +241,10 @@ export const ArrayPelisSeries = [
     titulo: "Interstellar",
     director: "Christopher Nolan",
     anio: 2014,
-    genero: "Ciencia Ficción / Drama",
+    genero: "Ciencia Ficcion",
     rating: 8.6,
     tipo: "Película",
     visto: true,
     url: "/A1JVqNMI7UL.webp"
-  }  
+  }
 ];

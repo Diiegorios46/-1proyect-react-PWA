@@ -1,12 +1,19 @@
 .container_vistas{
     display: flex;
     justify-content: start;
-    border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
+    color: black;
+    color: #fff;
+    width: 100%;
+    font-size: x-large;
+    font-weight:bold;
 }
 
 .container_cant_vistas_generos {
     display: flex;
-    border: 1px solid black;
+    align-items: center;
     gap: 10px;
     margin-left: auto; /* Mueve el contenedor hacia la derecha */
+    margin-right: 1%;
 }

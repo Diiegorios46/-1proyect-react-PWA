@@ -1,22 +1,65 @@
 
 .container_card{
-    height: 97%;
+    height: 98%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease; /* para que la animación sea suave */
 }
+
+
+.container_card:hover {
+    transform: scale(1.02); /* la escala, 1.05 es 5% más grande */
+  }
 
 .container_botones
 {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    margin: 10%;
 }
 
 .imgCard{
-    width: 100%;
-    height: 50%;
+    width: auto;
+    height: auto;
+    background-color: #fff6f6;
+    border-radius: 5px;
+
 }
 
 .img{
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: auto;
+    margin: 10%;
+}
+
+.buttonEditar{
+    background-color: #dd3636; /* azul moderno */
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.contentCard{
+    margin: auto;
+}
+
+.ul{
+    list-style-type: none;
+}
+
+.ContentTitulo{
+    font-size:xx-large;
+}
+
+.ContentSubTitulo{
+    margin-top: 6px;
+    font-size:large;
+
 }
