@@ -1,5 +1,6 @@
 .containerCard {
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    
+    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -16,7 +17,7 @@
   .accion {
     background-color: #e53935;
     padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-    border-radius: 12px;
+    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -27,7 +28,7 @@
   
   .aventura {
     background-color: #43a047;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -38,7 +39,7 @@ font-size:1rem;
   
   .cienciaFiccion {
     background-color: #3949ab;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -49,7 +50,7 @@ font-size:1rem;
   
   .comedia {
     background-color: #fbc02d;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: #333;
@@ -60,7 +61,7 @@ font-size:1rem;
   
   .crimen {
     background-color: #6d4c41;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -71,7 +72,7 @@ font-size:1rem;
   
   .drama {
     background-color: #5e35b1;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -82,7 +83,7 @@ font-size:1rem;
   
   .fantasia {
     background-color: #8e24aa;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -93,7 +94,7 @@ font-size:1rem;
   
   .romance {
     background-color: #d81b60;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -104,7 +105,7 @@ font-size:1rem;
   
   .terror {
     background-color: #212121;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 12px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;    border-radius: 30px;
     font-weight: bold;
     text-align: center;
     color: #f1f1f1;

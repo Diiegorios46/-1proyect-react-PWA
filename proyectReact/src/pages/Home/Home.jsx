@@ -324,7 +324,7 @@ const Home = () => {
                 </div>
 
                 <EstadoVisto 
-                    estado={"Peliculas / Series Vistas"}
+                    estado={"Peliculas - Series Vistas"}
                     cantVista={countView(true)}
                     CantTiposGenero={contarGeneros()}
                     mostrarVista={true}
