@@ -8,10 +8,10 @@ import { useState , useEffect } from "react";
 const Home = () => {
 
     const [arrayModPelis, setArrayModPelis] = useState(() => {
-        const storedData = localStorage.getItem("arrayPelisSeries");
+        const storedData = localStorage.getItem("contenido");
         if (!storedData) {
-        localStorage.setItem("arrayPelisSeries", JSON.stringify(ArrayPelisSeries));
-        return ArrayPelisSeries;
+            localStorage.setItem("contenido", JSON.stringify(ArrayPelisSeries));
+            return ArrayPelisSeries;
         }
         return JSON.parse(storedData);
     });
@@ -31,7 +31,7 @@ const Home = () => {
     
     const updateArrayModPelis = (newArray) => {
         setArrayModPelis(newArray);
-        localStorage.setItem("arrayPelisSeries", JSON.stringify(newArray));
+        localStorage.setItem("contenido", JSON.stringify(newArray));
     };
     
     const [buttonAddpeli,setButtonAddpeli] = useState(false)
@@ -180,7 +180,7 @@ const Home = () => {
 
     useEffect(() => {
            console.log(arrayModPelis)
-           console.log( console.log("Guardado en localStorage:", localStorage.getItem("arrayPelisSeries")))
+           console.log( console.log("Guardado en localStorage:", localStorage.getItem("contenido")))
         }, [arrayModPelis],[localStorage]
     )
 
