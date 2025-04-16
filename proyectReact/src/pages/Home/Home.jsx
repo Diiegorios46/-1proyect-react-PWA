@@ -8,11 +8,19 @@ import {library , generos , buscarRating } from '../../Constant/constant';
 
 const Home = () => {
 
+<<<<<<< HEAD
+    const [arrayModPelis, setArrayModPelis] = useState(() => {
+        const storedData = localStorage.getItem("contenido");
+        if (!storedData) {
+            localStorage.setItem("contenido", JSON.stringify(ArrayPelisSeries));
+            return ArrayPelisSeries;
+=======
     const [moviesAndSeries, setMoviesAndSeries] = useState(() => {
         const storedData = localStorage.getItem("library");
         if (!storedData) {
         localStorage.setItem("library", JSON.stringify(library));
         return library;
+>>>>>>> 53f8e1e88f073f1e499b680e13091e5ee70a75a5
         }
         return JSON.parse(storedData);
     });
@@ -32,8 +40,13 @@ const Home = () => {
     });
     
     const updateArrayModPelis = (newArray) => {
+<<<<<<< HEAD
+        setArrayModPelis(newArray);
+        localStorage.setItem("contenido", JSON.stringify(newArray));
+=======
         setMoviesAndSeries(newArray);
         localStorage.setItem("library", JSON.stringify(newArray));
+>>>>>>> 53f8e1e88f073f1e499b680e13091e5ee70a75a5
     };
     
     
@@ -187,9 +200,15 @@ const Home = () => {
 
 
     useEffect(() => {
+<<<<<<< HEAD
+           console.log(arrayModPelis)
+           console.log( console.log("Guardado en localStorage:", localStorage.getItem("contenido")))
+        }, [arrayModPelis],[localStorage]
+=======
            console.log(moviesAndSeries)
            console.log( console.log("Guardado en localStorage:", localStorage.getItem("library")))
         }, [moviesAndSeries],[localStorage]
+>>>>>>> 53f8e1e88f073f1e499b680e13091e5ee70a75a5
     )
 
     const ordenamientoRating = (orden = "asc") => {
