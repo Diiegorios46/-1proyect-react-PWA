@@ -54,6 +54,10 @@
     flex-direction: column;
 }
 
+.container_ascendenteDescendente{
+    margin-top: 10px;
+}
+
 .selects{
     display: flex;
     flex-direction: column;
