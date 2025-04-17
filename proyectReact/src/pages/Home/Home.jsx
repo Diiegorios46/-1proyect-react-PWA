@@ -20,8 +20,10 @@ const Home = () => {
     const [filtrarXGenero , setFiltrarXGenero] = useState("");
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
+
     const [openModalButton,setOpenModalButton] = useState(false)
     const [idState,setIdState] = useState(0)
+    const [estadoModalModify,setEstadoModalModify] = useState(false)
     
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -81,6 +83,7 @@ const Home = () => {
 
     const openModal = (id) => {
         setOpenModalButton(true)
+        setEstadoModalModify(true)
         setIdState(id)
     }
 
@@ -90,12 +93,14 @@ const Home = () => {
 
         const existe = moviesAndSeries.some(content => content.id === movie.id);
 
+
         if (existe) {
         const actualizado = moviesAndSeries.map(content => content.id === movie.id
             ? { ...content, ...movie, url: content.url }
             : content
         );
-            updateArrayModPelis(actualizado);
+
+        updateArrayModPelis(actualizado);
 
         } else {
             const nuevaPeli = {
@@ -236,6 +241,10 @@ const Home = () => {
     updateArrayModPelis(sortedArray);
   };
 
+  const closeModal = () => {
+      setOpenModalButton(false) 
+      setEstadoModalModify(false)
+  }
 
     return (
         <main className={Styles.container_main}>
@@ -246,9 +255,9 @@ const Home = () => {
 
                             <div className={Styles.modal_header}>
 
-                                {idState != 0 ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
+                                {estadoModalModify ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
 
-                                <button onClick={() => setOpenModalButton(false)} className={Styles.btnCerrar}>X</button>
+                                <button onClick={() => closeModal()} className={Styles.btnCerrar}>X</button>
                             </div> 
 
 
@@ -275,11 +284,17 @@ const Home = () => {
                                 </select>
 
                                 <label htmlFor="rating">Rating</label>
-                                <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputForm} />
+                                <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} />
 
                                 <label htmlFor="anio">Año</label>
-                                <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputForm} />
+                                <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} />
 
+                                {estadoModalModify && (
+                                    <>
+                                        <label htmlFor="img">img</label>
+                                        <input type="file" name="img" id="img" onChange={handleInput} className={Styles.inputForm} />
+                                    </>
+                                )}
 
                                 <button type="button" onClick={guardarPelicula} className={Styles.button}>Agregar</button>
                             </form>

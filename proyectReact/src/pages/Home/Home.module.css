@@ -176,7 +176,7 @@
 .form_agregar{
     display: flex;
     flex-direction: column;
-    gap: 5%;
+    gap: 10px;
     height: 100%;
 }
 
@@ -228,8 +228,22 @@
   }
 
   .select {
-    width: 100%;
-    max-width: 300px;
+    width: 20%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #1b1b1b;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    appearance: none; /* quita el estilo nativo */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .inputNumber {
+    width: 20%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: 2px solid #1b1b1b;
