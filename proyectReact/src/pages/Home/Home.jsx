@@ -1,9 +1,9 @@
 import Styles from "./Home.module.css";
 import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Title from '../../Components/Tittle/Titte';
-import {library , generos , buscarRating } from '../../Constant/constant';
+import { library, generos, buscarRating } from '../../Constant/constant';
 
 
 const Home = () => {
@@ -11,20 +11,20 @@ const Home = () => {
     const [moviesAndSeries, setMoviesAndSeries] = useState(() => {
         const storedData = localStorage.getItem("library");
         if (!storedData) {
-        localStorage.setItem("library", JSON.stringify(library));
-        return library;
+            localStorage.setItem("library", JSON.stringify(library));
+            return library;
         }
         return JSON.parse(storedData);
     });
-    
-    const [filtrarXGenero , setFiltrarXGenero] = useState("");
-    const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
-    const [buscarXRating , setBuscarXRating] = useState(0);
 
-    const [openModalButton,setOpenModalButton] = useState(false)
-    const [idState,setIdState] = useState(0)
-    const [estadoModalModify,setEstadoModalModify] = useState(false)
-    
+    const [filtrarXGenero, setFiltrarXGenero] = useState("");
+    const [buscarXPeliculaSerie, setBuscarXPeliculaSerie] = useState("");
+    const [buscarXRating, setBuscarXRating] = useState(0);
+
+    const [openModalButton, setOpenModalButton] = useState(false)
+    const [idState, setIdState] = useState(0)
+    const [estadoModalModify, setEstadoModalModify] = useState(false)
+
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
         director: '',
@@ -33,21 +33,21 @@ const Home = () => {
         visto: false,
         url: '',
     });
-    
+
     const updateArrayModPelis = (newArray) => {
         setMoviesAndSeries(newArray);
         localStorage.setItem("library", JSON.stringify(newArray));
     };
-    
-    
+
+
     const handleChange = (id) => {
         const updatedArray = moviesAndSeries.map((peli) =>
-        peli.id === id ? { ...peli, visto: !peli.visto } : peli
+            peli.id === id ? { ...peli, visto: !peli.visto } : peli
         );
         updateArrayModPelis(updatedArray);
     };
 
-    
+
     const contarGeneros = () => {
         let contador = 0;
         moviesAndSeries.map((prev) => {
@@ -67,7 +67,7 @@ const Home = () => {
             ...nuevaPeliSerie,
             [name]: value
         })
-        
+
     }
 
 
@@ -89,18 +89,18 @@ const Home = () => {
 
     const guardarPelicula = () => {
 
-        const movie = {...nuevaPeliSerie , id : idState}
+        const movie = { ...nuevaPeliSerie, id: idState }
 
         const existe = moviesAndSeries.some(content => content.id === movie.id);
 
 
         if (existe) {
-        const actualizado = moviesAndSeries.map(content => content.id === movie.id
-            ? { ...content, ...movie, url: content.url }
-            : content
-        );
+            const actualizado = moviesAndSeries.map(content => content.id === movie.id
+                ? { ...content, ...movie, url: content.url }
+                : content
+            );
 
-        updateArrayModPelis(actualizado);
+            updateArrayModPelis(actualizado);
 
         } else {
             const nuevaPeli = {
@@ -112,34 +112,34 @@ const Home = () => {
         }
 
         setNuevaPeliSerie({
-        titulo: "",
-        director: "",
-        genero: "",
-        rating: "",
-        visto: false,
-        id: moviesAndSeries.length + 1,
+            titulo: "",
+            director: "",
+            genero: "",
+            rating: "",
+            visto: false,
+            id: moviesAndSeries.length + 1,
         });
-        
+
         setOpenModalButton(false);
     };
-      
-  
 
 
-    const handleRating = (e) =>  {
+
+
+    const handleRating = (e) => {
         setBuscarXRating(e.target.value)
     }
 
     const handleFiltroXPeli = (e) => {
         setBuscarXPeliculaSerie(e.target.value)
     }
-    
+
     const countView = (seeMovie) => {
-        if(seeMovie){
+        if (seeMovie) {
             return filterForContentView("view").length
-        }else{
+        } else {
             return filterForContentView("noView").length
-        }       
+        }
     }
 
     const filterForContentView = (view) => {
@@ -160,7 +160,7 @@ const Home = () => {
 
         if (result.length === 0) {
             return <h3>No hay resultados</h3>
-        } else{
+        } else {
             return result.map((content) => (
                 <Card
                     key={content.id}
@@ -175,7 +175,7 @@ const Home = () => {
                     Onclick={handleChange}
                 />
             ))
-        }   
+        }
 
     }
 
@@ -184,7 +184,7 @@ const Home = () => {
             <div className={Styles.container_busqueda}>
                 <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
                 <div className={Styles.contenidoFiltrado}>
-                {renderContentFilterForWord()}
+                    {renderContentFilterForWord()}
                 </div>
             </div>
         );
@@ -194,172 +194,196 @@ const Home = () => {
         return moviesAndSeries.filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
     }
 
+    const filterxContentView = () => {
+        return moviesAndSeries.filter((contenido) => contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
+    }
+
     const renderContentView = () => {
         const content = filterxContentNotView()
-            return(
-                content.map((contenido) => (
-                    <Card
-                        key={contenido.id}
-                        titulo={contenido.titulo}
-                        director={contenido.director}
-                        genero={contenido.genero}
-                        rating={contenido.rating}
-                        id={contenido.id}
-                        estadoVisto={contenido.visto}
-                        anio={contenido.anio}
-                        url={contenido.url}
-                        Onclick={handleChange}
-                        openModal={openModal}
-                    />
-                ))
-            )
+        return (
+            content.map((contenido) => (
+                <Card
+                    key={contenido.id}
+                    titulo={contenido.titulo}
+                    director={contenido.director}
+                    genero={contenido.genero}
+                    rating={contenido.rating}
+                    id={contenido.id}
+                    estadoVisto={contenido.visto}
+                    anio={contenido.anio}
+                    url={contenido.url}
+                    Onclick={handleChange}
+                    openModal={openModal}
+                />
+            ))
+        )
+    }
+
+    const renderContentNotView = () => {
+        const content = filterxContentView()
+        return (
+            content.map((contenido) => (
+                <Card
+                    key={contenido.id}
+                    titulo={contenido.titulo}
+                    director={contenido.director}
+                    genero={contenido.genero}
+                    rating={contenido.rating}
+                    id={contenido.id}
+                    estadoVisto={contenido.visto}
+                    anio={contenido.anio}
+                    url={contenido.url}
+                    Onclick={handleChange}
+                    openModal={openModal}
+                />
+            ))
+        )
     }
 
 
     useEffect(() => {
-           console.log(moviesAndSeries)
-           console.log(idState)
-        }, [moviesAndSeries,idState]
+        console.log(moviesAndSeries)
+    }, [moviesAndSeries]
     )
 
     const ordenamientoRating = (orden = "asc") => {
-    if (moviesAndSeries.length === 0) return;
+        if (moviesAndSeries.length === 0) return;
 
-    const sortedArray = [...moviesAndSeries].sort((a, b) =>
-      orden === "asc" ? a.rating - b.rating : b.rating - a.rating
-    );
-    updateArrayModPelis(sortedArray);
-  };
-    
-    
+        const sortedArray = [...moviesAndSeries].sort((a, b) =>
+            orden === "asc" ? a.rating - b.rating : b.rating - a.rating
+        );
+        updateArrayModPelis(sortedArray);
+    };
+
+
     const ordenamientoAnio = (orden = "asc") => {
-    if (moviesAndSeries.length === 0) return;
+        if (moviesAndSeries.length === 0) return;
 
-    const sortedArray = [...moviesAndSeries].sort((a, b) =>
-      orden === "asc" ? a.anio - b.anio : b.anio - a.anio
-    );
-    updateArrayModPelis(sortedArray);
-  };
+        const sortedArray = [...moviesAndSeries].sort((a, b) =>
+            orden === "asc" ? a.anio - b.anio : b.anio - a.anio
+        );
+        updateArrayModPelis(sortedArray);
+    };
 
-  const closeModal = () => {
-      setOpenModalButton(false) 
-      setEstadoModalModify(false)
-  }
+    const closeModal = () => {
+        setOpenModalButton(false)
+        setEstadoModalModify(false)
+    }
 
     return (
         <main className={Styles.container_main}>
-            
-                {openModalButton && (
-                    <div className={Styles.modal}>
-                        <div className={Styles.modal_container}>
 
-                            <div className={Styles.modal_header}>
+            {openModalButton && (
+                <div className={Styles.modal}>
+                    <div className={Styles.modal_container}>
 
-                                {estadoModalModify ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
+                        <div className={Styles.modal_header}>
 
-                                <button onClick={() => closeModal()} className={Styles.btnCerrar}>X</button>
-                            </div> 
+                            {estadoModalModify ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
 
-
-                            <form action="" className={Styles.form_agregar}>
-
-                                <label htmlFor="titulo">Título</label>
-                                <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm}/>
-
-                                <label htmlFor="director">Director</label>
-                                <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm}/>
-
-                                <label htmlFor="genero">Género</label>
-                                <select name="genero" id="genero" onChange={handleInput} className={Styles.select} >
-                                    <option value="">Genero</option>
-                                    <option value="Accion">Acción</option>
-                                    <option value="Aventura">Aventura</option>
-                                    <option value="Ciencia-Ficcion">Ciencia Ficción</option>
-                                    <option value="Comedia">Comedia</option>
-                                    <option value="Crimen">Crimen</option>
-                                    <option value="Drama">Drama</option>
-                                    <option value="Fantasia">Fantasía</option>
-                                    <option value="Romance">Romance</option>
-                                    <option value="Terror">Terror</option>
-                                </select>
-
-                                <label htmlFor="rating">Rating</label>
-                                <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} />
-
-                                <label htmlFor="anio">Año</label>
-                                <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} />
-
-                                {estadoModalModify && (
-                                    <>
-                                        <label htmlFor="img">img</label>
-                                        <input type="file" name="img" id="img" onChange={handleInput} className={Styles.inputForm} />
-                                    </>
-                                )}
-
-                                <button type="button" onClick={guardarPelicula} className={Styles.button}>Agregar</button>
-                            </form>
-
+                            <button onClick={() => closeModal()} className={Styles.btnCerrar}>X</button>
                         </div>
+
+
+                        <form action="" className={Styles.form_agregar}>
+
+                            <label htmlFor="titulo">Título</label>
+                            <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm} />
+
+                            <label htmlFor="director">Director</label>
+                            <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm} />
+
+                            <label htmlFor="genero">Género</label>
+                            <select name="genero" id="genero" onChange={handleInput} className={Styles.select} >
+                                <option value="">Genero</option>
+                                <option value="Accion">Acción</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Ciencia-Ficcion">Ciencia Ficción</option>
+                                <option value="Comedia">Comedia</option>
+                                <option value="Crimen">Crimen</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Fantasia">Fantasía</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Terror">Terror</option>
+                            </select>
+
+                            <label htmlFor="rating">Rating</label>
+                            <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} />
+
+                            <label htmlFor="anio">Año</label>
+                            <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} />
+
+                            {!estadoModalModify && (
+                                <>
+                                    <label htmlFor="img">img</label>
+                                    <input type="text" name="img" id="img" onChange={handleInput} className={Styles.inputForm} placeholder="https://www.bing.com/ck/a?!&&p=81baf3265506150fd075c490eafb88ef83c3110c0edc010aa62a2da99b6f27e7JmltdHM9MTc0NDc2MTYwMA&ptn=3&ver=2&hsh=4&fclid=3fc6c20c-50f0-6334-319a-d7cb512d62fb&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWcrZGUrY2FzaXRhJmlkPTNDQzM4QUFFRDgyOEYzNjMyQzY1NzlERTdCMDU2MTA2NTM0MDlGNTkmRk9STT1JQUNGSVI&ntb=1" />
+                                </>
+                            )}
+
+                            <button type="button" onClick={guardarPelicula} className={Styles.button}>Agregar</button>
+                        </form>
+
                     </div>
-                )}
+                </div>
+            )}
 
-                {/* -----------------------------------------FILTROS--------------------------------------------------------------- */}
-                <section className={Styles.container_filtros}>
-                    <div className={Styles.filtros}>
+            {/* -----------------------------------------FILTROS--------------------------------------------------------------- */}
+            <section className={Styles.container_filtros}>
+                <div className={Styles.filtros}>
 
-                        <Title/>
-                        <span className={Styles.tittle_filtros}>Filtros</span>
-                        <span className={Styles.subTittle_filtros}>Generos : </span>
+                    <Title />
+                    <span className={Styles.tittle_filtros}>Filtros</span>
+                    <span className={Styles.subTittle_filtros}>Generos : </span>
 
-                        <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
-                            <option value=""> Generos </option>
-                            <option value="Accion">Acción</option>
-                            <option value="Aventura">Aventura</option>
-                            <option value="Ciencia Ficcion">Ciencia Ficción</option>
-                            <option value="Comedia">Comedia</option>
-                            <option value="Crimen">Crimen</option>
-                            <option value="Drama">Drama</option>
-                            <option value="Fantasia">Fantasía</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Terror">Terror</option>
-                        </select>
+                    <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
+                        <option value=""> Generos </option>
+                        <option value="Accion">Acción</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Ciencia Ficcion">Ciencia Ficción</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Crimen">Crimen</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Fantasia">Fantasía</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Terror">Terror</option>
+                    </select>
 
-                        <h1 htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</h1>
-                        <label htmlFor="" className={Styles.Inputs}> {"Todos"}
-                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
-                        </label>
-                        <label htmlFor="" className={Styles.Inputs}> {" < 5"}
-                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"}/>
-                        </label>
-                        <label htmlFor="" className={Styles.Inputs}> {"5 a 8"} 
-                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"}/>
-                        </label>
-                        <label htmlFor="" className={Styles.Inputs}> {" > 8"}
-                            <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"}/>
-                        </label>
-                        <label htmlFor="" className={Styles.Inputs}>Ascendente
-                            <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
-                        </label>
-                        <label htmlFor="" className={Styles.Inputs}> Descendente 
-                            <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')}/>
-                        </label>
-                        <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
-                        <label htmlFor="" className={Styles.Inputs}> Ascendente año
-                            <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')}/>
-                        </label>
+                    <h1 htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</h1>
+                    <label htmlFor="" className={Styles.Inputs}> {"Todos"}
+                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
+                    </label>
+                    <label htmlFor="" className={Styles.Inputs}> {" < 5"}
+                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"} />
+                    </label>
+                    <label htmlFor="" className={Styles.Inputs}> {"5 a 8"}
+                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"} />
+                    </label>
+                    <label htmlFor="" className={Styles.Inputs}> {" > 8"}
+                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"} />
+                    </label>
+                    <label htmlFor="" className={Styles.Inputs}>Ascendente
+                        <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                    </label>
+                    <label htmlFor="" className={Styles.Inputs}> Descendente
+                        <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                    </label>
+                    <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
+                    <label htmlFor="" className={Styles.Inputs}> Ascendente año
+                        <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')} />
+                    </label>
 
-                        <label htmlFor="" className={Styles.Inputs}>Descendente año
-                            <input  type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')}/>
-                        </label>
-                        
-                    </div>
-                </section>
+                    <label htmlFor="" className={Styles.Inputs}>Descendente año
+                        <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')} />
+                    </label>
 
-                <section className={Styles.container_peliculas}>
+                </div>
+            </section>
+
+            <section className={Styles.container_peliculas}>
 
                 {/* Titulo / director - Busqueda */}
                 <div className={Styles.container_inputBusqueda}>
-                    <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onBlur={handleFiltroXPeli}/>
+                    <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onBlur={handleFiltroXPeli} />
                 </div>
 
                 {renderContentFind()}
@@ -369,7 +393,7 @@ const Home = () => {
                     <button className={Styles.buttonAgregarPeli} onClick={() => setOpenModalButton(true)}>Agregar Pelicula/Serie</button>
                 </div>
 
-                <EstadoVisto 
+                <EstadoVisto
                     estado={"Peliculas - Series Vistas"}
                     cantVista={countView(true)}
                     CantTiposGenero={contarGeneros()}
@@ -378,36 +402,24 @@ const Home = () => {
                 />
 
                 <div className={Styles.container_cards}>
-                    
-                    {filterForContentView("view").map((contenido) => (
-                        <Card
-                            key={contenido.id}
-                            titulo={contenido.titulo}
-                            director={contenido.director}
-                            genero={contenido.genero}
-                            rating={contenido.rating}
-                            id={contenido.id}
-                            estadoVisto={contenido.visto}
-                            anio={contenido.anio}
-                            url={contenido.url}
-                            Onclick={handleChange}
-                            openModal={openModal}
-                        />
-                    ))}
+
+                    {renderContentNotView()}
 
                 </div>
 
                 <div className={Styles.containerEstadoVisto}>
-                    <EstadoVisto 
-                        estado={"Peliculas - Series Por Ver"} 
-                        cantVista={countView(false)} 
-                        CantTiposGenero={contarGeneros()} 
+                    <EstadoVisto
+                        estado={"Peliculas - Series Por Ver"}
+                        cantVista={countView(false)}
+                        CantTiposGenero={contarGeneros()}
                         useStateArrayPelisSeries={moviesAndSeries}
                     />
                 </div>
 
                 <div className={Styles.container_cards}>
+
                     {renderContentView()}
+
                 </div>
 
 
