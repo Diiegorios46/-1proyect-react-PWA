@@ -276,6 +276,7 @@ const Home = () => {
         setEstadoModalModify(false)
     }
 
+
     return (
         <main className={Styles.container_main}>
 
@@ -333,7 +334,6 @@ const Home = () => {
                 </div>
             )}
 
-            {/* -----------------------------------------FILTROS--------------------------------------------------------------- */}
             <section className={Styles.container_filtros}>
                 <div className={Styles.filtros}>
 
@@ -418,14 +418,13 @@ const Home = () => {
 
             <section className={Styles.container_peliculas}>
 
-                {/* Titulo / director - Busqueda */}
+
                 <div className={Styles.container_inputBusqueda}>
                     <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onBlur={handleFiltroXPeli} />
                 </div>
 
-                    {renderContentFind()}
+                {renderContentFind()}
 
-                {/* Agregar pelicula/serie  */}
                 <div className={Styles.container_buttonAgregarPeli}>
                     <button className={Styles.buttonAgregarPeli} onClick={() => setOpenModalButton(true)}>Agregar Pelicula/Serie</button>
                 </div>
@@ -440,7 +439,7 @@ const Home = () => {
 
                 <div className={Styles.container_cards}>
 
-                    {renderContentNotView()}
+                {renderContentNotView()}
 
                 </div>
 
@@ -455,7 +454,7 @@ const Home = () => {
 
                 <div className={Styles.container_cards}>
 
-                    {renderContentView()}
+                {renderContentView()}
 
                 </div>
 

@@ -11,24 +11,21 @@ const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista , useSt
     } 
       
     const mostrarCardGenero = () => {
-        if (mostrarVista) {
+        if (mostrarVista){
             let arrayAux = useStateArrayPelisSeries.filter((peli) => peli.visto)
             return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
                 <CardGenero key={genero} genero={genero} cant={cantidad} />
-            )); 
-        }else{
-            let arrayAux = useStateArrayPelisSeries.filter((peli) => !peli.visto)
-            return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
-                <CardGenero key={genero} genero={genero} cant={cantidad} />
-            ));  
+            ));
         }
+        let arrayAux = useStateArrayPelisSeries.filter((peli) => !peli.visto)
+        return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
+            <CardGenero key={genero} genero={genero} cant={cantidad} />
+        ));    
     }
         
     return (
         <div className={Styles.container_vistas}>
-            
-            <div>{estado} {cantVista} {CantTiposGenero} </div>
-            
+            <div> {estado} / cantidad Vistas {cantVista} Cantidad Generos {CantTiposGenero} </div>
             <div className={Styles.container_cant_vistas_generos}>
                 {mostrarCardGenero()}                
             </div>

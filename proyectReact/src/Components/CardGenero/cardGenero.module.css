@@ -32,7 +32,7 @@
     font-weight: bold;
     text-align: center;
     color: white;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -43,7 +43,7 @@ font-size:1rem;
     font-weight: bold;
     text-align: center;
     color: white;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -54,7 +54,7 @@ font-size:1rem;
     font-weight: bold;
     text-align: center;
     color: #333;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -65,7 +65,7 @@ font-size:1rem;
     font-weight: bold;
     text-align: center;
     color: white;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -76,7 +76,7 @@ font-size:1rem;
     font-weight: bold;
     text-align: center;
     color: white;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -87,7 +87,7 @@ font-size:1rem;
     font-weight: bold;
     text-align: center;
     color: white;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -98,7 +98,7 @@ font-size:1rem;
     font-weight: bold;
     text-align: center;
     color: white;
-font-size:1rem;
+  font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
   }
@@ -114,3 +114,52 @@ font-size:1rem;
     transition: transform 0.2s ease;
   }
   
+  .accion:hover {
+    background-color: #ef5350;
+  }
+  
+  .aventura:hover {
+    background-color: #66bb6a;
+  }
+  
+  .cienciaFiccion:hover {
+    background-color: #5c6bc0;
+  }
+  
+  .comedia:hover {
+    background-color: #fdd835;
+  }
+  
+  .crimen:hover {
+    background-color: #8d6e63;
+  }
+  
+  .drama:hover {
+    background-color: #7e57c2;
+  }
+  
+  .fantasia:hover {
+    background-color: #ab47bc;
+  }
+  
+  .romance:hover {
+    background-color: #ec407a;
+  }
+  
+  .terror:hover {
+    background-color: #424242;
+  }
+  
+  .containerCard:active,
+  .accion:active,
+  .aventura:active,
+  .cienciaFiccion:active,
+  .comedia:active,
+  .crimen:active,
+  .drama:active,
+  .fantasia:active,
+  .romance:active,
+  .terror:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
