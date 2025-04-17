@@ -4,9 +4,10 @@
     font-weight: bold;
     text-align: center;
     color: white;
-    font-size:1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size:0.5rem;
+    box-shadow: 0 4px 8px #00000033;
     transition: transform 0.2s ease;
+    white-space: nowrap;
   }
   
   .containerCard:hover {
@@ -24,6 +25,8 @@
     font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .aventura {
@@ -35,6 +38,8 @@
   font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .cienciaFiccion {
@@ -46,6 +51,8 @@
   font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .comedia {
@@ -57,6 +64,8 @@
   font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .crimen {
@@ -68,6 +77,8 @@
   font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .drama {
@@ -79,6 +90,8 @@
   font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .fantasia {
@@ -87,9 +100,11 @@
     font-weight: bold;
     text-align: center;
     color: white;
-  font-size:1rem;
+    font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .romance {
@@ -101,6 +116,8 @@
   font-size:1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .terror {
@@ -112,6 +129,8 @@
     font-size: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease;
+    white-space: nowrap;
+
   }
   
   .accion:hover {

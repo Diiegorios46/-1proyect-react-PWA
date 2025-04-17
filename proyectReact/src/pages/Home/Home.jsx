@@ -18,6 +18,7 @@ const Home = () => {
     });
 
     const [filtrarXGenero, setFiltrarXGenero] = useState("");
+    const [filtrarXTipo, setFiltrarXTipo] = useState("");
     const [buscarXPeliculaSerie, setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating, setBuscarXRating] = useState(0);
 
@@ -72,14 +73,29 @@ const Home = () => {
 
 
     const handleInputGenero = (e) => {
-        console.log(e.target.value)
         setFiltrarXGenero(e.target.value)
     }
+
+    const handleInputTipo = (e) => {
+        setFiltrarXTipo(e.target.value)
+    }
+
+    
+    const filtrarPorTipo = (tipo) => {
+        if (filtrarXTipo === "" || filtrarXTipo === "Todos") return true;
+        return tipo === filtrarXTipo;
+    };
+    
 
     const filtrarPorGenero = (contenido) => {
         if (!filtrarXGenero) return true
         return contenido == filtrarXGenero
     }
+
+    useEffect(()=> {
+        console.log(filtrarXTipo)
+    },[filtrarXTipo])
+    
 
     const openModal = (id) => {
         setOpenModalButton(true)
@@ -149,9 +165,10 @@ const Home = () => {
     const filterForMovie = () => {
         const arrayAux = moviesAndSeries.filter(
             (content) =>
-                (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
-                (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
-        );
+                    (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
+                    (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
+            );
+
         return arrayAux;
     }
 
@@ -171,6 +188,7 @@ const Home = () => {
                     rating={content.rating}
                     id={content.id}
                     url={content.url}
+                    tipo={content.tipo}
                     estadoVisto={content.visto}
                     Onclick={handleChange}
                 />
@@ -191,11 +209,11 @@ const Home = () => {
     };
 
     const filterxContentNotView = () => {
-        return moviesAndSeries.filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
+        return moviesAndSeries.filter((contenido) => !contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating) && filtrarPorTipo(contenido.tipo))
     }
 
     const filterxContentView = () => {
-        return moviesAndSeries.filter((contenido) => contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating))
+        return moviesAndSeries.filter((contenido) => contenido.visto && filtrarPorGenero(contenido.genero) && (buscarXRating == 0 || buscarRating(contenido.rating) == buscarXRating) && filtrarPorTipo(contenido.tipo))
     }
 
     const renderContentView = () => {
@@ -215,6 +233,7 @@ const Home = () => {
                     estadoVisto={contenido.visto}
                     anio={contenido.anio}
                     url={contenido.url}
+                    tipo={contenido.tipo}
                     Onclick={handleChange}
                     openModal={openModal}
                 />
@@ -239,6 +258,7 @@ const Home = () => {
                     estadoVisto={contenido.visto}
                     anio={contenido.anio}
                     url={contenido.url}
+                    tipo={contenido.tipo}
                     Onclick={handleChange}
                     openModal={openModal}
                 />
@@ -295,10 +315,16 @@ const Home = () => {
                         <form action="" className={Styles.form_agregar}>
 
                             <label htmlFor="titulo">Título</label>
-                            <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm} />
+                            <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm} placeholder="Spiderman"/>
 
                             <label htmlFor="director">Director</label>
-                            <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm} />
+                            <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm} placeholder="San Reimi"/>
+
+                            <label htmlFor="anio">Tipo de contenido</label>
+                            <select name="genero" id="genero" onChange={handleInput} className={Styles.select}>
+                                <option value="Pelicula">Pelicula</option>
+                                <option value="Serie">Serie</option>
+                            </select>
 
                             <label htmlFor="genero">Género</label>
                             <select name="genero" id="genero" onChange={handleInput} className={Styles.select} >
@@ -315,10 +341,10 @@ const Home = () => {
                             </select>
 
                             <label htmlFor="rating">Rating</label>
-                            <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} />
+                            <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} placeholder="5"/>
 
                             <label htmlFor="anio">Año</label>
-                            <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} />
+                            <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} placeholder="2002"/>
 
                             {!estadoModalModify && (
                                 <>
@@ -340,7 +366,6 @@ const Home = () => {
                     <Title />
 
                     <div className={Styles.selects}>
-                        <span className={Styles.subTittle_filtros}>Generos : </span>
                         <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
                             <option value=""> Generos </option>
                             <option value="Accion">Acción</option>
@@ -352,6 +377,14 @@ const Home = () => {
                             <option value="Fantasia">Fantasía</option>
                             <option value="Romance">Romance</option>
                             <option value="Terror">Terror</option>
+                        </select>
+                    </div>
+
+                    <div className={Styles.selects}>
+                        <select name="tipo" id="tipo" className={Styles.select_filtros} onChange={handleInputTipo}>
+                            <option value="Todos"> Todos </option>
+                            <option value="Película"> Película </option>
+                            <option value="Serie">Serie</option>
                         </select>
                     </div>
 

@@ -1,6 +1,6 @@
 import Styles from "./card.module.css";
 
-const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id , anio , url , openModal}) => { 
+const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id , anio , url , openModal , tipo}) => { 
     
     return (
         <div className={Styles.container_card}>
@@ -13,6 +13,7 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
                 <li className={Styles.ContentTitulo}>{titulo}</li>
                 <li className={Styles.ContentSubTitulo}>Director : {director}</li>
                 <li className={Styles.ContentSubTitulo}>Genero : {genero}</li>
+                <li className={Styles.ContentSubTitulo}>Tipo : {tipo}</li>
                 <li className={Styles.ContentSubTitulo}>Rating : {rating}</li>
                 <li className={Styles.ContentSubTitulo}>({anio})</li>
             </ul>
