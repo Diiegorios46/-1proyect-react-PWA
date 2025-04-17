@@ -332,49 +332,64 @@ const Home = () => {
                 <div className={Styles.filtros}>
 
                     <Title />
-                    <span className={Styles.tittle_filtros}>Filtros</span>
-                    <span className={Styles.subTittle_filtros}>Generos : </span>
 
-                    <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
-                        <option value=""> Generos </option>
-                        <option value="Accion">Acción</option>
-                        <option value="Aventura">Aventura</option>
-                        <option value="Ciencia Ficcion">Ciencia Ficción</option>
-                        <option value="Comedia">Comedia</option>
-                        <option value="Crimen">Crimen</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Fantasia">Fantasía</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Terror">Terror</option>
-                    </select>
+                    <div className={Styles.selects}>
+                        <span className={Styles.subTittle_filtros}>Generos : </span>
+                        <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
+                            <option value=""> Generos </option>
+                            <option value="Accion">Acción</option>
+                            <option value="Aventura">Aventura</option>
+                            <option value="Ciencia Ficcion">Ciencia Ficción</option>
+                            <option value="Comedia">Comedia</option>
+                            <option value="Crimen">Crimen</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasia">Fantasía</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Terror">Terror</option>
+                        </select>
+                    </div>
 
-                    <h1 htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</h1>
-                    <label htmlFor="" className={Styles.Inputs}> {"Todos"}
-                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
-                    </label>
-                    <label htmlFor="" className={Styles.Inputs}> {" < 5"}
-                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"} />
-                    </label>
-                    <label htmlFor="" className={Styles.Inputs}> {"5 a 8"}
-                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"} />
-                    </label>
-                    <label htmlFor="" className={Styles.Inputs}> {" > 8"}
-                        <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"} />
-                    </label>
-                    <label htmlFor="" className={Styles.Inputs}>Ascendente
-                        <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
-                    </label>
-                    <label htmlFor="" className={Styles.Inputs}> Descendente
-                        <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
-                    </label>
-                    <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
-                    <label htmlFor="" className={Styles.Inputs}> Ascendente año
-                        <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')} />
-                    </label>
 
-                    <label htmlFor="" className={Styles.Inputs}>Descendente año
-                        <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')} />
-                    </label>
+                    <div className={Styles.inputFiltros}>
+                        <div className={Styles.container_rating}>
+                            <span htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</span>
+                            <label htmlFor="" className={Styles.Inputs}> {"Todos"}
+                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
+                            </label>
+                            <label htmlFor="" className={Styles.Inputs}> {" < 5"}
+                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"} />
+                            </label>
+                            <label htmlFor="" className={Styles.Inputs}> {"5 a 8"}
+                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"} />
+                            </label>
+                            <label htmlFor="" className={Styles.Inputs}> {" > 8"}
+                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"} />
+                            </label>
+                        </div>
+
+
+                        <div className={Styles.container_ascendenteDescendente}>
+                            <label htmlFor="" className={Styles.Inputs}>Ascendente
+                                <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                            </label>
+                            <label htmlFor="" className={Styles.Inputs}> Descendente
+                                <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                            </label>
+                        </div>
+
+
+                        <div className={Styles.container_anio}>
+                            <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
+                            <label htmlFor="" className={Styles.Inputs}> Ascendente año
+                                <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')} />
+                            </label>
+
+                            <label htmlFor="" className={Styles.Inputs}>Descendente año
+                                <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')} />
+                            </label>
+                        </div>
+
+                    </div>
 
                 </div>
             </section>
