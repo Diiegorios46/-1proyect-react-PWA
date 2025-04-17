@@ -26,11 +26,12 @@ const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista , useSt
     return (
         <div className={Styles.container_vistas}>
             <div>
-                <ul>
-                    <li>{estado}</li>
-                    <li>Cantidad Vistas {cantVista}</li>
-                    <li>Cantidad Generos {CantTiposGenero}</li>
-                </ul>
+            <select className={Styles.selectEstadisticas}>
+                <option>{estado}</option>
+                <option>Cantidad Vistas {cantVista}</option>
+                <option>Cantidad Géneros {CantTiposGenero}</option>
+            </select>
+
             </div>
             <div className={Styles.container_cant_vistas_generos}>
                 {mostrarCardGenero()}                

@@ -2,8 +2,10 @@ import Styles from "./Home.module.css";
 import Card from "../../Components/Cards/Card";
 import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
 import { useState, useEffect } from "react";
-import Title from '../../Components/Tittle/Titte';
+import Tittle from '../../Components/Tittle/Titte';
 import { library, generos, buscarRating } from '../../Constant/constant';
+import { PiGearBold } from "react-icons/pi";
+
 
 
 const Home = () => {
@@ -25,6 +27,7 @@ const Home = () => {
     const [openModalButton, setOpenModalButton] = useState(false)
     const [idState, setIdState] = useState(null)
     const [estadoModalModify, setEstadoModalModify] = useState(false)
+    const [modoResponsiveFavIcon, setModoResponsiveFavIcon] = useState(true)
 
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -80,22 +83,22 @@ const Home = () => {
         setFiltrarXTipo(e.target.value)
     }
 
-    
+
     const filtrarPorTipo = (tipo) => {
         if (filtrarXTipo === "" || filtrarXTipo === "Todos") return true;
         return tipo === filtrarXTipo;
     };
-    
+
 
     const filtrarPorGenero = (contenido) => {
         if (!filtrarXGenero) return true
         return contenido == filtrarXGenero
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log(filtrarXTipo)
-    },[filtrarXTipo])
-    
+    }, [filtrarXTipo])
+
 
     const openModal = (id) => {
         setOpenModalButton(true)
@@ -139,6 +142,10 @@ const Home = () => {
         setOpenModalButton(false);
     };
 
+    const functionGenerica = () => {
+        setModoResponsiveFavIcon(true)
+    }
+
 
 
 
@@ -165,9 +172,9 @@ const Home = () => {
     const filterForMovie = () => {
         const arrayAux = moviesAndSeries.filter(
             (content) =>
-                    (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
-                    (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
-            );
+                (buscarXRating == 0 || buscarRating(content.rating) == buscarXRating) &&
+                (content.titulo == buscarXPeliculaSerie || content.director == buscarXPeliculaSerie) && filtrarPorGenero(content.genero)
+        );
 
         return arrayAux;
     }
@@ -218,7 +225,7 @@ const Home = () => {
 
     const renderContentView = () => {
         const content = filterxContentNotView()
-        if(content.length === 0){
+        if (content.length === 0) {
             return <h3>No hay resultados</h3>
         }
         return (
@@ -243,7 +250,7 @@ const Home = () => {
 
     const renderContentNotView = () => {
         const content = filterxContentView()
-        if(content.length === 0){
+        if (content.length === 0) {
             return <h3>No hay resultados</h3>
         }
         return (
@@ -266,11 +273,6 @@ const Home = () => {
         )
     }
 
-
-    useEffect(() => {
-        console.log(moviesAndSeries)
-    }, [moviesAndSeries]
-    )
 
     const ordenamientoRating = (orden = "asc") => {
         if (moviesAndSeries.length === 0) return;
@@ -315,10 +317,10 @@ const Home = () => {
                         <form action="" className={Styles.form_agregar}>
 
                             <label htmlFor="titulo">Título</label>
-                            <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm} placeholder="Spiderman"/>
+                            <input type="text" name="titulo" id="titulo" onChange={handleInput} className={Styles.inputForm} placeholder="Spiderman" />
 
                             <label htmlFor="director">Director</label>
-                            <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm} placeholder="San Reimi"/>
+                            <input type="text" name="director" id="director" onChange={handleInput} className={Styles.inputForm} placeholder="San Reimi" />
 
                             <label htmlFor="anio">Tipo de contenido</label>
                             <select name="genero" id="genero" onChange={handleInput} className={Styles.select}>
@@ -341,10 +343,10 @@ const Home = () => {
                             </select>
 
                             <label htmlFor="rating">Rating</label>
-                            <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} placeholder="5"/>
+                            <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputNumber} placeholder="5" />
 
                             <label htmlFor="anio">Año</label>
-                            <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} placeholder="2002"/>
+                            <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputNumber} placeholder="2002" />
 
                             {!estadoModalModify && (
                                 <>
@@ -363,85 +365,90 @@ const Home = () => {
             <section className={Styles.container_filtros}>
                 <div className={Styles.filtros}>
 
-                    <Title />
-
-                    <div className={Styles.selects}>
-                        <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
-                            <option value=""> Generos </option>
-                            <option value="Accion">Acción</option>
-                            <option value="Aventura">Aventura</option>
-                            <option value="Ciencia Ficcion">Ciencia Ficción</option>
-                            <option value="Comedia">Comedia</option>
-                            <option value="Crimen">Crimen</option>
-                            <option value="Drama">Drama</option>
-                            <option value="Fantasia">Fantasía</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Terror">Terror</option>
-                        </select>
+                    <div className={Styles.container_tittle_favicon}>
+                        <Tittle nombre={"App Name"} />
                     </div>
 
-                    <div className={Styles.selects}>
-                        <select name="tipo" id="tipo" className={Styles.select_filtros} onChange={handleInputTipo}>
-                            <option value="Todos"> Todos </option>
-                            <option value="Película"> Película </option>
-                            <option value="Serie">Serie</option>
-                        </select>
-                    </div>
+                    <div className={Styles.subcontainer_filtros}>
+                        <div className={Styles.selects}>
+                            <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
+                                <option value=""> Generos </option>
+                                <option value="Accion">Acción</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Ciencia Ficcion">Ciencia Ficción</option>
+                                <option value="Comedia">Comedia</option>
+                                <option value="Crimen">Crimen</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Fantasia">Fantasía</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Terror">Terror</option>
+                            </select>
+                        </div>
 
-
-                    <div className={Styles.inputFiltros}>
-                        <div className={Styles.container_rating}>
-                            <span htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</span>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
-                                {"Todos"}
-                            </label>
-                            <label htmlFor="" className={Styles.Inputs}>
-                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"} />
-                                {"↓5"}
-                            </label>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"} />
-                                {"5 a 8"}
-                            </label>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"} />
-                                {"8↑"}
-                            </label>
+                        <div className={Styles.selects}>
+                            <select name="tipo" id="tipo" className={Styles.select_filtros} onChange={handleInputTipo}>
+                                <option value="Todos"> Todos </option>
+                                <option value="Película"> Película </option>
+                                <option value="Serie">Serie</option>
+                            </select>
                         </div>
 
 
-                        <div className={Styles.container_ascendenteDescendente}>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="OrdenarFecha" id="" />
-                                Todos
-                            </label>
-                            <label htmlFor="" className={Styles.Inputs}>
-                                <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
-                                Ascendente
-                            </label>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
-                                Descendente
-                            </label>
-                        </div>
+                        <div className={Styles.inputFiltros}>
+                            <div className={Styles.container_rating}>
+                                <span htmlFor="" className={Styles.subTittle_filtros}>Ordenar Rating</span>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"0"} />
+                                    {"Todos"}
+                                </label>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"1"} />
+                                    {"↓5"}
+                                </label>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"2"} />
+                                    {"5 a 8"}
+                                </label>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="rating" id="" className={Styles.input} onChange={handleRating} value={"3"} />
+                                    {"8↑"}
+                                </label>
+                            </div>
 
 
-                        <div className={Styles.container_anio}>
-                            <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="OrdenarFecha2" id=""/>
-                                Todos
-                            </label>
-                            <label htmlFor="" className={Styles.Inputs}> 
-                                <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')} />
-                                Ascendente año
-                            </label>
+                            <div className={Styles.container_ascendenteDescendente}>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="OrdenarFecha" id="" />
+                                    Todos
+                                </label>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                                    Ascendente
+                                </label>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                                    Descendente
+                                </label>
+                            </div>
 
-                            <label htmlFor="" className={Styles.Inputs}>
-                                <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')} />
-                                Descendente año
-                            </label>
+
+                            <div className={Styles.container_anio}>
+                                <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="OrdenarFecha2" id="" />
+                                    Todos
+                                </label>
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('asc')} />
+                                    Ascendente
+                                </label>
+
+                                <label htmlFor="" className={Styles.Inputs}>
+                                    <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio('desc')} />
+                                    Descendente
+                                </label>
+                            </div>
+
                         </div>
 
                     </div>
@@ -472,7 +479,7 @@ const Home = () => {
 
                 <div className={Styles.container_cards}>
 
-                {renderContentNotView()}
+                    {renderContentNotView()}
 
                 </div>
 
@@ -487,7 +494,7 @@ const Home = () => {
 
                 <div className={Styles.container_cards}>
 
-                {renderContentView()}
+                    {renderContentView()}
 
                 </div>
 

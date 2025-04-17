@@ -15,6 +15,7 @@
 .container_filtros{
     display: flex;
     justify-content: center;
+    background-color: #242424;
 }
 
 .container_peliculas {
@@ -43,14 +44,12 @@
 }
 
 .filtros{
-    min-width: 22%;
     height: 100%;
-    border-right: 1px solid rgb(46, 46, 46);
+    width:25%;
     display: flex;
     flex-direction: column;
     gap: 15px;
     background-color: #242424;
-    border-radius: 0.5rem;
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -84,7 +83,6 @@
 }
 
 .select_filtros{
-    width: 50%;
     height: 40px;
     border-radius: 5px;
     border: none;
@@ -97,6 +95,7 @@
     color: #fff;
     outline: none;
     transition: background-color 0.3s ease;
+    width: 60%;
 }
 
 .Inputs{
@@ -122,7 +121,6 @@
 .container_buttonAgregarPeli{
     display: flex;
     gap: 10px;
-    margin: 2%;
 }
 
 .buttonAgregarPeli {
@@ -305,8 +303,28 @@
     flex-direction: column;
   }
 
+  .container_tittle_favicon{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+  }
+
+  .favIcon > svg{
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+  }
+
+
+  .favIcon > svg > path{
+    width: 100%;
+  }
+
+  .favIcon{
+    width: 5%;
+  }
   
-@media (max-width:1200px) {
+@media (max-width:1470px) {
     .container_main{
         grid-template-columns: 1fr;
     }
@@ -364,5 +382,10 @@
     .Inputs{
         margin: 0;
     }
+
+    .favIcon > svg{
+        visibility: visible;
+    }
+
 
 }
