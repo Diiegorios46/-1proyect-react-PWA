@@ -1,12 +1,12 @@
 import Styles from "./card.module.css";
 
-const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id , anio , url}) => { 
+const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id , anio , url , openModal}) => { 
     
     return (
         <div className={Styles.container_card}>
 
             <div className={Styles.imgCard}>
-                <img src={url} alt="" className={Styles.img}/> 
+                <img src={url} alt="img Card Generica" className={Styles.img}/> 
             </div>
             
             <ul className={Styles.ul}>
@@ -19,13 +19,10 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
 
             <div className={Styles.container_botones}>
                 <div>
-                    <button className={Styles.buttonEditar}>Editar</button>
+                    <button className={Styles.buttonEditar} onClick={(() => openModal(id))}>Editar</button>
                 </div>
                 {estadoVisto ? 
-                <div onClick={() => Onclick(id)}>❤️</div> 
-                :
-                <div onClick={() => Onclick(id)}>🖤</div>
-                }
+                <div onClick={() => Onclick(id)}>❤️</div> : <div onClick={() => Onclick(id)}>🖤</div>}
 
             </div>
         </div> 

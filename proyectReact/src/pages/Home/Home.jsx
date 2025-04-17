@@ -21,6 +21,7 @@ const Home = () => {
     const [buscarXPeliculaSerie , setBuscarXPeliculaSerie] = useState("");
     const [buscarXRating , setBuscarXRating] = useState(0);
     const [openModalButton,setOpenModalButton] = useState(false)
+    const [idState,setIdState] = useState(0)
     
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
@@ -28,7 +29,7 @@ const Home = () => {
         genero: '',
         rating: '',
         visto: false,
-        id: Date.now()
+        url: '',
     });
     
     const updateArrayModPelis = (newArray) => {
@@ -37,12 +38,13 @@ const Home = () => {
     };
     
     
-   const handleChange = (id) => {
-    const updatedArray = moviesAndSeries.map((peli) =>
-      peli.id === id ? { ...peli, visto: !peli.visto } : peli
-    );
-    updateArrayModPelis(updatedArray);
-  };
+    const handleChange = (id) => {
+        const updatedArray = moviesAndSeries.map((peli) =>
+        peli.id === id ? { ...peli, visto: !peli.visto } : peli
+        );
+        updateArrayModPelis(updatedArray);
+    };
+
     
     const contarGeneros = () => {
         let contador = 0;
@@ -58,11 +60,12 @@ const Home = () => {
 
     function handleInput(e) {
         const { name, value } = e.target;
+
         setNuevaPeliSerie({
             ...nuevaPeliSerie,
             [name]: value
         })
-        console.log(nuevaPeliSerie)
+        
     }
 
 
@@ -76,13 +79,32 @@ const Home = () => {
         return contenido == filtrarXGenero
     }
 
-    const agregarPelicula = () => {
-        const nuevaPeli = {
-        ...nuevaPeliSerie,
-        id: moviesAndSeries.length + 1,
-        };
-        const updatedArray = [...moviesAndSeries, nuevaPeli];
-        updateArrayModPelis(updatedArray);
+    const openModal = (id) => {
+        setOpenModalButton(true)
+        setIdState(id)
+    }
+
+    const guardarPelicula = () => {
+
+        const movie = {...nuevaPeliSerie , id : idState}
+
+        const existe = moviesAndSeries.some(content => content.id === movie.id);
+
+        if (existe) {
+        const actualizado = moviesAndSeries.map(content => content.id === movie.id
+            ? { ...content, ...movie, url: content.url }
+            : content
+        );
+            updateArrayModPelis(actualizado);
+
+        } else {
+            const nuevaPeli = {
+                ...nuevaPeliSerie,
+                id: moviesAndSeries.length + 1,
+                img: "default.jpg",
+            };
+            updateArrayModPelis([...moviesAndSeries, nuevaPeli]);
+        }
 
         setNuevaPeliSerie({
         titulo: "",
@@ -90,11 +112,13 @@ const Home = () => {
         genero: "",
         rating: "",
         visto: false,
-        id: Date.now(),
+        id: moviesAndSeries.length + 1,
         });
         
         setOpenModalButton(false);
-  };
+    };
+      
+  
 
 
     const handleRating = (e) =>  {
@@ -180,6 +204,7 @@ const Home = () => {
                         anio={contenido.anio}
                         url={contenido.url}
                         Onclick={handleChange}
+                        openModal={openModal}
                     />
                 ))
             )
@@ -188,8 +213,8 @@ const Home = () => {
 
     useEffect(() => {
            console.log(moviesAndSeries)
-           console.log( console.log("Guardado en localStorage:", localStorage.getItem("library")))
-        }, [moviesAndSeries],[localStorage]
+           console.log(idState)
+        }, [moviesAndSeries,idState]
     )
 
     const ordenamientoRating = (orden = "asc") => {
@@ -211,16 +236,18 @@ const Home = () => {
     updateArrayModPelis(sortedArray);
   };
 
+
     return (
         <main className={Styles.container_main}>
             
-            {/* Modal Agregar pelicula */}
                 {openModalButton && (
                     <div className={Styles.modal}>
                         <div className={Styles.modal_container}>
 
                             <div className={Styles.modal_header}>
-                                <h2>Agregar Pelicula/Serie</h2>
+
+                                {moviesAndSeries.some(content => content.id === idState) ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
+
                                 <button onClick={() => setOpenModalButton(false)} className={Styles.btnCerrar}>X</button>
                             </div> 
 
@@ -248,9 +275,13 @@ const Home = () => {
                                 </select>
 
                                 <label htmlFor="rating">Rating</label>
-                                <input type="text" name="rating" id="rating" onChange={handleInput} className={Styles.inputForm} />
+                                <input type="number" name="rating" id="rating" onChange={handleInput} className={Styles.inputForm} />
 
-                                <button type="button" onClick={agregarPelicula} className={Styles.button}>Agregar</button>
+                                <label htmlFor="anio">Año</label>
+                                <input type="number" name="anio" id="anio" onChange={handleInput} className={Styles.inputForm} />
+
+
+                                <button type="button" onClick={guardarPelicula} className={Styles.button}>Agregar</button>
                             </form>
 
                         </div>
@@ -345,6 +376,7 @@ const Home = () => {
                             anio={contenido.anio}
                             url={contenido.url}
                             Onclick={handleChange}
+                            openModal={openModal}
                         />
                     ))}
 
