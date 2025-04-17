@@ -168,7 +168,7 @@
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
-    height: 48%;
+    min-height: 48%;
     display: flex;
     flex-direction: column;
 }

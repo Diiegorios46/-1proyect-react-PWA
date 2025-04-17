@@ -246,7 +246,7 @@ const Home = () => {
 
                             <div className={Styles.modal_header}>
 
-                                {moviesAndSeries.some(content => content.id === idState) ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
+                                {idState != 0 ? <h2>Modificar Pelicula/Serie</h2> : <h2>Agregar Pelicula/Serie</h2>}
 
                                 <button onClick={() => setOpenModalButton(false)} className={Styles.btnCerrar}>X</button>
                             </div> 
