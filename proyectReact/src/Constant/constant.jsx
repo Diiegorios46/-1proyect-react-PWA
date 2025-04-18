@@ -13,6 +13,7 @@ export const  buscarRating = (rating) => {
 
 
 export const generos = [
+  { genero : "Cualquiera" },
   { genero: "Accion" },
   { genero: "Aventura" },
   { genero: "Ciencia Ficcion" },

@@ -4,7 +4,8 @@ import EstadoVisto from "../../Components/EstadoVisto/EstadoVisto";
 import { useState, useEffect } from "react";
 import Tittle from '../../Components/Tittle/Titte';
 import { library, generos, buscarRating } from '../../Constant/constant';
-import { PiGearBold } from "react-icons/pi";
+import SelectFiltro from "../../Components/SelectFiltro";
+// import { PiGearBold } from "react-icons/pi";
 
 
 
@@ -85,18 +86,17 @@ const Home = () => {
 
 
     const filtrarPorTipo = (tipo) => {
-        if (filtrarXTipo === "" || filtrarXTipo === "Todos") return true;
+        if (filtrarXTipo === "" || filtrarXTipo === "Cualquiera") return true;
         return tipo === filtrarXTipo;
     };
 
 
     const filtrarPorGenero = (contenido) => {
-        if (!filtrarXGenero) return true
+        if (filtrarXGenero === "" || filtrarXGenero == "Cualquiera") return true
         return contenido == filtrarXGenero
     }
 
     useEffect(() => {
-        console.log(filtrarXTipo)
     }, [filtrarXTipo])
 
 
@@ -145,9 +145,6 @@ const Home = () => {
     const functionGenerica = () => {
         setModoResponsiveFavIcon(true)
     }
-
-
-
 
     const handleRating = (e) => {
         setBuscarXRating(e.target.value)
@@ -207,7 +204,7 @@ const Home = () => {
     const renderContentFind = () => {
         return (
             <div className={Styles.container_busqueda}>
-                <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
+            <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
                 <div className={Styles.contenidoFiltrado}>
                     {renderContentFilterForWord()}
                 </div>
@@ -274,21 +271,31 @@ const Home = () => {
     }
 
 
-    const ordenamientoRating = (orden = "asc") => {
+    const ordenamientoRating = (orden = "desc") => {
         if (moviesAndSeries.length === 0) return;
 
+        if (orden === 0) {
+            updateArrayModPelis(library);
+            return;
+        }
+
         const sortedArray = [...moviesAndSeries].sort((a, b) =>
-            orden === "asc" ? a.rating - b.rating : b.rating - a.rating
+            orden === "desc" ? a.rating - b.rating : b.rating - a.rating
         );
         updateArrayModPelis(sortedArray);
     };
 
 
-    const ordenamientoAnio = (orden = "asc") => {
+    const ordenamientoAnio = (orden = "desc") => {
         if (moviesAndSeries.length === 0) return;
 
+        if (orden === 0) {
+            updateArrayModPelis(library);
+            return;
+        }
+
         const sortedArray = [...moviesAndSeries].sort((a, b) =>
-            orden === "asc" ? a.anio - b.anio : b.anio - a.anio
+            orden === "desc" ? a.anio - b.anio : b.anio - a.anio
         );
         updateArrayModPelis(sortedArray);
     };
@@ -370,27 +377,31 @@ const Home = () => {
                     </div>
 
                     <div className={Styles.subcontainer_filtros}>
-                        <div className={Styles.selects}>
-                            <select name="genero" id="genero" className={Styles.select_filtros} onChange={handleInputGenero}>
-                                <option value=""> Generos </option>
-                                <option value="Accion">Acción</option>
-                                <option value="Aventura">Aventura</option>
-                                <option value="Ciencia Ficcion">Ciencia Ficción</option>
-                                <option value="Comedia">Comedia</option>
-                                <option value="Crimen">Crimen</option>
-                                <option value="Drama">Drama</option>
-                                <option value="Fantasia">Fantasía</option>
-                                <option value="Romance">Romance</option>
-                                <option value="Terror">Terror</option>
-                            </select>
-                        </div>
 
                         <div className={Styles.selects}>
-                            <select name="tipo" id="tipo" className={Styles.select_filtros} onChange={handleInputTipo}>
-                                <option value="Todos"> Todos </option>
-                                <option value="Película"> Película </option>
-                                <option value="Serie">Serie</option>
-                            </select>
+
+                            <SelectFiltro 
+                                nombreSelect={"Genero"} 
+                                opciones={generos}
+                                onChange={handleInputGenero}
+                                nombreOpcion={"genero"}
+                                name={"genero"}
+                                id={"genero"}
+                            />
+
+                            <SelectFiltro
+                                nombreSelect={"Tipo de contenido"}
+                                opciones={[
+                                    { tipo: "Cualquiera" },
+                                    { tipo: "Película" },
+                                    { tipo: "Serie" },
+                                ]}
+                                onChange={handleInputTipo}
+                                nombreOpcion={"tipo"}
+                                name={"tipo"}
+                                id={"tipo"}
+                            />
+
                         </div>
 
 
@@ -418,7 +429,7 @@ const Home = () => {
 
                             <div className={Styles.container_ascendenteDescendente}>
                                 <label htmlFor="" className={Styles.Inputs}>
-                                    <input type="radio" name="OrdenarFecha" id="" />
+                                    <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating(0)} />
                                     Todos
                                 </label>
                                 <label htmlFor="" className={Styles.Inputs}>
@@ -426,7 +437,7 @@ const Home = () => {
                                     Ascendente
                                 </label>
                                 <label htmlFor="" className={Styles.Inputs}>
-                                    <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('asc')} />
+                                    <input type="radio" name="OrdenarFecha" id="" onClick={() => ordenamientoRating('desc')} />
                                     Descendente
                                 </label>
                             </div>
@@ -435,7 +446,7 @@ const Home = () => {
                             <div className={Styles.container_anio}>
                                 <legend className={Styles.subTittle_filtros}> Ordenar Año </legend>
                                 <label htmlFor="" className={Styles.Inputs}>
-                                    <input type="radio" name="OrdenarFecha2" id="" />
+                                    <input type="radio" name="OrdenarFecha2" id="" onClick={() => ordenamientoAnio(0)} />
                                     Todos
                                 </label>
                                 <label htmlFor="" className={Styles.Inputs}>
@@ -450,6 +461,8 @@ const Home = () => {
                             </div>
 
                         </div>
+
+                        
 
                     </div>
 
