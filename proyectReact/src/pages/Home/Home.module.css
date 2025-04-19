@@ -132,15 +132,22 @@
 }
 
 .buttonAgregarPeli {
-    background-color: #212121;
+    background-color: #222;
     color: #fff;
-    font-weight: bold;
+    
+    width: 200px;
+    margin-top: 20px;
+    padding: 5px;
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    height: 50%;
     border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
+    border: none;
+  }
+  .buttonAgregarPeli:hover {
+    scale: 1.01
   }
 
   .container_ascendenteDescendente{
@@ -157,12 +164,14 @@
 .inputBusquedaPeli{
     width: 50%;
     height: 40px;
-    border-radius: 5px;
+    font-size: 20px;
+    border-radius: 80px;
     background-image: url('/lupa.png');
     background-repeat: no-repeat;
     background-position: 10px center;
     background-size: 20px 20px;
-    padding-left: 40px; /* espacio para la imagen */
+    padding-left: 60px; /* espacio para la imagen */
+    border: none;
 }
 
 .container_cards{
@@ -170,7 +179,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 30px;
     padding: 10px;
-    background-color: #242424;
+    background-color: transparent; 
     margin-right: 2%;
     border-radius: 5px;
 }
@@ -396,4 +405,40 @@
     }
 
 
+}
+.toast {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    color: #fff;
+    padding: 20px 40px;  /* Aumentar el padding para que el toast sea más grande */
+    border-radius: 15px;  /* Un borde más redondeado */
+    z-index: 9999;
+    font-weight: bold;
+    font-size: 22px;  /* Tamaño de fuente más grande */
+    text-align: center;  /* Centrar el texto */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
+    animation: aparecerDesaparecer 1.5s forwards;
+    width: 300px;  /* Mantén la animación rápida */
+}
+
+@keyframes aparecerDesaparecer {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px) scale(0.8);  
+    }
+    20% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.1);  
+    }
+    80% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1); 
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px) scale(0.8);  
+    }
 }

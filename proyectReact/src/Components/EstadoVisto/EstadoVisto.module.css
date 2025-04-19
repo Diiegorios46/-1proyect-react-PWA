@@ -16,10 +16,11 @@
     gap: 10px;
     margin-left: auto; /* Mueve el contenedor hacia la derecha */
     margin-right: 1%;
+    margin-bottom: 20px;
 }
 
 .selectEstadisticas {
-    background-color: #3d3d3d;
+    background-color: #222;
     color: #ffffff;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -27,6 +28,8 @@
     outline: none;
     font-weight: bold;
     cursor: pointer;
+    border-radius: 5px;
+    border: none;
   }
   
   .selectEstadisticas:hover {

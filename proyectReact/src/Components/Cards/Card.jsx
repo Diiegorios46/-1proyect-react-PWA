@@ -11,10 +11,10 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
             
             <ul className={Styles.ul}>
                 <li className={Styles.ContentTitulo}>{titulo}</li>
-                <li className={Styles.ContentSubTitulo}>Director : {director}</li>
-                <li className={Styles.ContentSubTitulo}>Genero : {genero}</li>
-                <li className={Styles.ContentSubTitulo}>Tipo : {tipo}</li>
-                <li className={Styles.ContentSubTitulo}>Rating : {rating}</li>
+                <li className={Styles.ContentSubTitulo}>Director:  {director}</li>
+                <li className={Styles.ContentSubTitulo}>Genero:  {genero}</li>
+                <li className={Styles.ContentSubTitulo}>Tipo:  {tipo}</li>
+                <li className={Styles.ContentSubTitulo}>Rating:  {rating}</li>
                 <li className={Styles.ContentSubTitulo}>({anio})</li>
             </ul>
 
@@ -23,7 +23,7 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
                     <button className={Styles.buttonEditar} onClick={(() => openModal(id))}>Editar</button>
                 </div>
                 {estadoVisto ? 
-                <div onClick={() => Onclick(id)}>❤️</div> : <div onClick={() => Onclick(id)}>🖤</div>}
+                <div className ={Styles.like} onClick={() => Onclick(id)}>❤️</div> : <div className ={Styles.like} onClick={() => Onclick(id)}>🖤</div>}
 
             </div>
         </div> 

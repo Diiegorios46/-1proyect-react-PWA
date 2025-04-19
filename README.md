@@ -11,8 +11,8 @@ Una Web RIA desarrollada con React que permite explorar películas y series de f
 ## 👨‍💻 Integrantes
 
 - Diego Ríos - FAI-4877
-- Valentín Bustos Villar - FAI-[COMPLETAR]
-- Juan Cruz [Apellido] - FAI-[COMPLETAR]
+- Valentín Bustos Villar - FAI-4019
+- Juan Cruz Geslowski - FAI-4881
 
 ## 📌 Características
 
@@ -32,7 +32,7 @@ A continuación se describen los archivos base del proyecto:
 
 Es el punto de entrada principal de la aplicación. Se encarga de renderizar el componente raíz (`App.js`) dentro del DOM, utilizando `ReactDOM`. También suele envolver la aplicación en otros componentes globales como el `BrowserRouter` o contextos.
 
-```js
+````js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -49,3 +49,4 @@ npm install
 npm run dev
 
 
+````

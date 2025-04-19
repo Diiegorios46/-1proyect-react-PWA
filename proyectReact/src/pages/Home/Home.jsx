@@ -30,6 +30,8 @@ const Home = () => {
     const [estadoModalModify, setEstadoModalModify] = useState(false)
     const [modoResponsiveFavIcon, setModoResponsiveFavIcon] = useState(true)
 
+    const [mensajeLike, setMensajeLike] = useState("");
+
     const [nuevaPeliSerie, setNuevaPeliSerie] = useState({
         titulo: '',
         director: '',
@@ -50,8 +52,14 @@ const Home = () => {
             peli.id === id ? { ...peli, visto: !peli.visto } : peli
         );
         updateArrayModPelis(updatedArray);
+        const peliModificada = moviesAndSeries.find((peli) => peli.id === id);
+    if (peliModificada) {
+        const nuevoEstado = !peliModificada.visto;
+        console.log(mensajeLike);
+        setMensajeLike(nuevoEstado ? 'Agregada a "visto" ✔' : 'Quitada de "visto"  ✖ ');
+        setTimeout(() => setMensajeLike(""), 1000);
+    }
     };
-
 
     const contarGeneros = () => {
         let contador = 0;
@@ -200,14 +208,15 @@ const Home = () => {
     //     }
 
     // }
-
+   
+    
     const renderContentFind = () => {
         return (
-            <>
-                <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
+            <>  
+                <h3 className={Styles.contentBuscado}>Contenido buscado: </h3>
                 <div className={Styles.container_cards}>
                     {renderContentFilterForWord()}
-                </div>
+                </div> 
             </>
 
         );
@@ -318,7 +327,7 @@ const Home = () => {
 
     const renderContentFilterForWord = () => {
         const result = filtroNombre();
-        console.log(result)
+        //console.log(result)
         if (buscarXPeliculaSerie == ""){
             return ;
         }
@@ -348,11 +357,25 @@ const Home = () => {
                 )
         }
     } 
-
-
+  
+    const renderMensajeLike = () => {
+        console.log(mensajeLike);
+        return (
+            <>
+                {mensajeLike && (
+                    <div className={Styles.toast}>
+                        {mensajeLike}
+                        
+                    </div>
+                )}
+            </>
+        );
+    };
+    
     return (
+         
         <main className={Styles.container_main}>
-
+            
             {openModalButton && (
                 <div className={Styles.modal}>
                     <div className={Styles.modal_container}>
@@ -512,18 +535,18 @@ const Home = () => {
 
                 </div>
             </section>
-
+            
             <section className={Styles.container_peliculas}>
-
+            {renderMensajeLike()}  
 
                 <div className={Styles.container_inputBusqueda}>
-                    <input type="text" className={Styles.inputBusquedaPeli} placeholder="Titulo - Director" onBlur={handleFiltroXPeli} />
+                    <input type="text" className={Styles.inputBusquedaPeli} placeholder=" Titulo - Director " onBlur={handleFiltroXPeli} />
                 </div>
 
                 {renderContentFind()}
-
+                
                 <div className={Styles.container_buttonAgregarPeli}>
-                    <button className={Styles.buttonAgregarPeli} onClick={() => setOpenModalButton(true)}>Agregar Pelicula/Serie</button>
+                    <button className={Styles.buttonAgregarPeli} onClick={() => setOpenModalButton(true)}>Agregar Pelicula/Serie + </button>
                 </div>
 
                 <EstadoVisto
