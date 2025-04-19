@@ -176,39 +176,40 @@ const Home = () => {
         return arrayAux;
     }
 
-    const renderContentFilterForWord = () => {
-        const result = filterForMovie();
+    // const renderContentFilterForWord = () => {
+    //     const result = filterForMovie();
 
-        if (result.length === 0) {
-            return <h3>No hay resultados</h3>
-        } else {
-            return result.map((content) => (
-                <Card
-                    key={content.id}
-                    titulo={content.titulo}
-                    director={content.director}
-                    genero={content.genero}
-                    anio={content.anio}
-                    rating={content.rating}
-                    id={content.id}
-                    url={content.url}
-                    tipo={content.tipo}
-                    estadoVisto={content.visto}
-                    Onclick={handleChange}
-                />
-            ))
-        }
+    //     if (result.length === 0) {
+    //         return <h3>No hay resultados</h3>
+    //     } else {
+    //         return result.map((content) => (
+    //             <Card
+    //                 key={content.id}
+    //                 titulo={content.titulo}
+    //                 director={content.director}
+    //                 genero={content.genero}
+    //                 anio={content.anio}
+    //                 rating={content.rating}
+    //                 id={content.id}
+    //                 url={content.url}
+    //                 tipo={content.tipo}
+    //                 estadoVisto={content.visto}
+    //                 Onclick={handleChange}
+    //             />
+    //         ))
+    //     }
 
-    }
+    // }
 
     const renderContentFind = () => {
         return (
-            <div className={Styles.container_busqueda}>
-            <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
-                <div className={Styles.contenidoFiltrado}>
+            <>
+                <h3 className={Styles.contentBuscado}>contenido Buscado:</h3>
+                <div className={Styles.container_cards}>
                     {renderContentFilterForWord()}
                 </div>
-            </div>
+            </>
+
         );
     };
 
@@ -304,6 +305,49 @@ const Home = () => {
         setOpenModalButton(false)
         setEstadoModalModify(false)
     }
+
+    const filtroNombre = () => {
+        const arrayAux = moviesAndSeries.filter(
+            (content) =>
+            buscarXPeliculaSerie !== "" &&
+            (content.titulo.toLowerCase().includes(buscarXPeliculaSerie.toLowerCase()) ||
+            content.director.toLowerCase().includes(buscarXPeliculaSerie.toLowerCase()))
+        );
+        return arrayAux;
+    }
+
+    const renderContentFilterForWord = () => {
+        const result = filtroNombre();
+        console.log(result)
+        if (buscarXPeliculaSerie == ""){
+            return ;
+        }
+
+        if (result.length === 0) {
+            return <h3>No hay resultados</h3>
+        } else {
+            return (<>
+                            {
+                            result.map((content) => (
+                                    <Card
+                                    key={content.id}
+                                    titulo={content.titulo}
+                                    director={content.director}
+                                    genero={content.genero}
+                                    anio={content.anio}
+                                    rating={content.rating}
+                                    id={content.id}
+                                    url={content.url}
+                                    tipo={content.tipo}
+                                    estadoVisto={content.visto}
+                                    Onclick={handleChange}
+                                    />
+                                )
+                            )}
+                    </>
+                )
+        }
+    } 
 
 
     return (
