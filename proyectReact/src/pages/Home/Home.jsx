@@ -440,7 +440,7 @@ const Home = () => {
                 <div className={Styles.filtros}>
 
                     <div className={Styles.container_tittle_favicon}>
-                        <Tittle nombre={"App Name"} />
+                        <Tittle nombre={"ReelVices"} />
                     </div>
 
                     <div className={Styles.subcontainer_filtros}>
