@@ -33,13 +33,15 @@
 ## 📷 **Capturas de pantalla**  
 
 🎥 **Vista principal**  
-![Vista principal](https://via.placeholder.com/800x400?text=GIF+de+la+vista+principal)  
+![image](https://github.com/user-attachments/assets/6e66a7e6-b02f-4cf8-9f6f-6745b7dcc2d6)
 
 🔍 **Búsqueda y filtros**  
-![Búsqueda y filtros](https://via.placeholder.com/800x400?text=GIF+de+búsqueda+y+filtros)  
+![image](https://github.com/user-attachments/assets/e9f04d67-bb07-4a94-b854-d86fb21e61c1)
+
 
 🖼️ **Modal para agregar contenido**  
-![Modal](https://via.placeholder.com/800x400?text=GIF+del+modal+de+agregar+contenido)  
+![image](https://github.com/user-attachments/assets/02ab615e-4604-4125-8769-0f611532a23e)
+
 
 ---
 
@@ -477,5 +479,42 @@ npm install
 # Inicia el servidor de desarrollo
 npm run dev
 ```
+
+---
+
+## 🎯 **Cómo usar la aplicación**
+
+1. 🔍 **Busca películas o series** por título o director.  
+2. 🎛️ **Filtra el contenido** por género, tipo o calificación.  
+3. ➕ **Agrega nuevas películas o series** usando el modal interactivo.  
+4. ⭐ **Marca contenido como visto** y consulta estadísticas.  
+
+---
+
+## 🧩 **Contribuciones**
+
+¡Las contribuciones son bienvenidas! Si deseas colaborar:  
+
+1. Haz un fork del repositorio.  
+2. Crea una nueva rama: `git checkout -b feature/nueva-funcionalidad`.  
+3. Realiza tus cambios y haz un commit: `git commit -m "Agrega nueva funcionalidad"`.  
+4. Envía un pull request.  
+
+---
+
+## 📄 **Licencia**
+
+Este proyecto está bajo la licencia MIT. Puedes consultar más detalles en el archivo `LICENSE`.  
+
+---
+
+## 💬 **Contacto**
+
+Si tienes preguntas o sugerencias, no dudes en contactarnos:  
+
+📧 **Email**: contacto@reactmovieseries.com  
+🌐 **Sitio web**: [reactmovieseries.com](https://reactmovieseries.com)  
+
+---
 
 ¡Gracias por visitar nuestro proyecto! 🎉  
