@@ -33,13 +33,15 @@
 ## 📷 **Capturas de pantalla**  
 
 🎥 **Vista principal**  
-![Vista principal](https://via.placeholder.com/800x400?text=GIF+de+la+vista+principal)  
+![image](https://github.com/user-attachments/assets/6e66a7e6-b02f-4cf8-9f6f-6745b7dcc2d6)
 
 🔍 **Búsqueda y filtros**  
-![Búsqueda y filtros](https://via.placeholder.com/800x400?text=GIF+de+búsqueda+y+filtros)  
+![image](https://github.com/user-attachments/assets/e9f04d67-bb07-4a94-b854-d86fb21e61c1)
+
 
 🖼️ **Modal para agregar contenido**  
-![Modal](https://via.placeholder.com/800x400?text=GIF+del+modal+de+agregar+contenido)  
+![image](https://github.com/user-attachments/assets/02ab615e-4604-4125-8769-0f611532a23e)
+
 
 ---
 
