@@ -478,41 +478,4 @@ npm install
 npm run dev
 ```
 
----
-
-## 🎯 **Cómo usar la aplicación**
-
-1. 🔍 **Busca películas o series** por título o director.  
-2. 🎛️ **Filtra el contenido** por género, tipo o calificación.  
-3. ➕ **Agrega nuevas películas o series** usando el modal interactivo.  
-4. ⭐ **Marca contenido como visto** y consulta estadísticas.  
-
----
-
-## 🧩 **Contribuciones**
-
-¡Las contribuciones son bienvenidas! Si deseas colaborar:  
-
-1. Haz un fork del repositorio.  
-2. Crea una nueva rama: `git checkout -b feature/nueva-funcionalidad`.  
-3. Realiza tus cambios y haz un commit: `git commit -m "Agrega nueva funcionalidad"`.  
-4. Envía un pull request.  
-
----
-
-## 📄 **Licencia**
-
-Este proyecto está bajo la licencia MIT. Puedes consultar más detalles en el archivo `LICENSE`.  
-
----
-
-## 💬 **Contacto**
-
-Si tienes preguntas o sugerencias, no dudes en contactarnos:  
-
-📧 **Email**: contacto@reactmovieseries.com  
-🌐 **Sitio web**: [reactmovieseries.com](https://reactmovieseries.com)  
-
----
-
 ¡Gracias por visitar nuestro proyecto! 🎉  
