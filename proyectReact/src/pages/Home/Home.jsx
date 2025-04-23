@@ -213,7 +213,6 @@ const Home = () => {
     const renderContentFind = () => {
         return (
             <>  
-                <h3 className={Styles.contentBuscado}>Contenido buscado: </h3>
                 <div className={Styles.container_cards}>
                     {renderContentFilterForWord()}
                 </div> 

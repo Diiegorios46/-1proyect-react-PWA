@@ -466,7 +466,6 @@ Archivo de configuración del proyecto. Define las dependencias, scripts y metad
 
 Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:  
 
-
 ```bash
 # Clona el repositorio
 git clone https://github.com/tuusuario/react-movie-series-pwa.git

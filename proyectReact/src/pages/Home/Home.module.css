@@ -123,7 +123,6 @@
     margin-top: 3%;
     position: sticky;
     top: 0;
-    z-index: 29;
 }
 
 .container_buttonAgregarPeli{
@@ -134,12 +133,11 @@
 .buttonAgregarPeli {
     background-color: #222;
     color: #fff;
-    
     width: 200px;
     margin-top: 20px;
     padding: 5px;
     font-size: 1rem;
-    height: 50%;
+    height: 90%;
     border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     cursor: pointer;
@@ -177,7 +175,6 @@
 .container_cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 30px;
     padding: 10px;
     background-color: transparent; 
     margin-right: 2%;
