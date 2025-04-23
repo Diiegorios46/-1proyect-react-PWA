@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4494a05e-9cbf-47e1-b06f-5e297e9a0689)![image](https://github.com/user-attachments/assets/8334cf33-df1c-435a-971c-0ccc69ce5ce9)# 🎬✨ **React Movie Series PWA**  
+🎬✨ **React Movie Series PWA**  
 
 ¡Bienvenido a **React Movie Series PWA**! Una aplicación web progresiva (PWA) desarrollada con **React** para explorar películas y series de manera dinámica, interactiva y completamente **responsive**. 🌟
 
@@ -34,9 +34,6 @@
 
 🎥 **Vista principal**  
 ![image](https://github.com/user-attachments/assets/5e97c971-bec5-4311-bd8f-55d4c7e0fa48)
-
-🔍 **Búsqueda y filtros**  
-![image](https://github.com/user-attachments/assets/ab80dbf0-8c2f-47fa-8037-1223cae77be1)
 
 🖼️ **Modal para agregar contenido**  
 ![image](https://github.com/user-attachments/assets/d21cb18c-1445-4216-9500-bd2b992e0c3e)
