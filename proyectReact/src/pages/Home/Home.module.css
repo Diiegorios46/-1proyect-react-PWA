@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     background-color: #242424;
+    min-width: 200px;
 }
 
 .container_peliculas {
@@ -45,12 +46,11 @@
 
 .filtros{
     height: 100%;
-    width:25%;
+    min-width:100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
     background-color: #242424;
-    position: fixed;
     display: flex;
     flex-direction: column;
 }
@@ -323,38 +323,25 @@
     justify-content:space-between;
   }
 
-  .favIcon > svg{
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-  }
-
-
-  .favIcon > svg > path{
-    width: 100%;
-  }
-
-  .favIcon{
-    width: 5%;
-  }
-  
-@media (max-width:1470px) {
+@media (max-width:765px) {
     .container_main{
-        grid-template-columns: 1fr;
+        grid-template-columns: auto 1fr;
     }
-
 
     .filtros{
-        height: auto;
-        border-right: 1px solid rgb(46, 46, 46);
-        display: flex;
-        flex-direction: row;
-        background-color: #242424;
-        width: 100%;
-        flex-direction: column;
-        z-index: 4;
+        width: 200px;
+        position: relative;
     }
 
+    .container_cards{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        padding: 10px;
+        background-color: transparent;
+        margin-right: 2%;
+        border-radius: 5px;
+        width: auto;
+    }
 
     .selects{
         display: flex;
@@ -365,13 +352,13 @@
         flex-direction: column;
     }
 
-    .container_peliculas{
-        margin-top: 35%;
-    }
-
     .inputFiltros{
         flex-direction: column;
         gap: 10px;
+    }
+
+    .containerSelect{
+        padding: 0;
     }
 
     .inputFiltros > span{
@@ -384,7 +371,7 @@
 
 
     .container_rating{
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .tittle_filtros{
@@ -403,6 +390,8 @@
 
 
 }
+
+
 .toast {
     position: fixed;
     top: 10%;
