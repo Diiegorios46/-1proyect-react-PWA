@@ -12,11 +12,14 @@ const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista , useSt
       
     const mostrarCardGenero = () => {
         if (mostrarVista){
+            //En react el prefijo use esta reservado para hooks. Funciona pero no es semanticamente correcto
             let arrayAux = useStateArrayPelisSeries.filter((peli) => peli.visto)
             return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
                 <CardGenero key={genero} genero={genero} cant={cantidad} />
             ));
         }
+        //Igual que arriba
+
         let arrayAux = useStateArrayPelisSeries.filter((peli) => !peli.visto)
         return Object.entries(conteoPorGenero(arrayAux)).map(([genero, cantidad]) => (
             <CardGenero key={genero} genero={genero} cant={cantidad} />
@@ -26,6 +29,7 @@ const EstadoVisto = ({ estado, cantVista , CantTiposGenero, mostrarVista , useSt
     return (
         <div className={Styles.container_vistas}>
             <div>
+                {/* Si este select no esta seleccionando nada, entonces deberian ser textos planos.  */}
             <select className={Styles.selectEstadisticas}>
                 <option>{estado}</option>
                 <option>Cantidad Vistas {cantVista}</option>
