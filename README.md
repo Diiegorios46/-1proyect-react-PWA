@@ -1,3 +1,22 @@
+Correcciones:
+
+-Excelente el uso de constantes para unificar toda la app!
+- Muy bien resuelta la busqueda que es por director y nombre de pelicula. Hay un manejo avanzado de filtros combinados, ordenamientos y búsqueda
+- uso correcto de localStorage para persistencia
+- secciones estadísticas con desglose por género (EstadoVisto + CardGenero) muy claras
+- estructura de componentes bien definida: cada parte tiene su responsabilidad clara
+
+
+Cosas a mejorar:
+- Revisen bien el codigo antes de entregar. Borren todo codigo que no se usa. Todo codigo comentado.
+- Eviten tener codigo repetido, hagan funciones mas genericas para reutilizar.
+- Instalen prettier o algun identador de codigo para dejarlo mas prolijo.
+- Sean un poco mas semanticos con el uso de componentes
+
+Nota: 10
+
+pd: como 3 de rating a Matrix?
+
 🎬✨ **React Movie Series PWA**  
 
 ¡Bienvenido a **React Movie Series PWA**! Una aplicación web progresiva (PWA) desarrollada con **React** para explorar películas y series de manera dinámica, interactiva y completamente **responsive**. 🌟
@@ -467,6 +486,8 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 ```bash
 # Clona el repositorio
 git clone https://github.com/tuusuario/react-movie-series-pwa.git
+
+//OJO, revisar bien tuusuario no es la direccion del repo
 
 # Ingresa al directorio del proyecto
 cd proyectReact

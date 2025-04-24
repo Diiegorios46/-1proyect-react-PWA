@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import Tittle from '../../Components/Tittle/Titte';
 import { library, generos, buscarRating } from '../../Constant/constant';
 import SelectFiltro from "../../Components/SelectFiltro";
-// import { PiGearBold } from "react-icons/pi";
+// import { PiGearBold } from "react-icons/pi"; 
+//Remover comentarios de codigo que no se usa.
 
 
 
@@ -92,7 +93,7 @@ const Home = () => {
         setFiltrarXTipo(e.target.value)
     }
 
-
+//filtrarPorGenero y filtrarPorTipo podrian ser una sola funcion.
     const filtrarPorTipo = (tipo) => {
         if (filtrarXTipo === "" || filtrarXTipo === "Cualquiera") return true;
         return tipo === filtrarXTipo;
@@ -104,6 +105,7 @@ const Home = () => {
         return contenido == filtrarXGenero
     }
 
+    //Este use effect hace algo?
     useEffect(() => {
     }, [filtrarXTipo])
 
@@ -150,6 +152,7 @@ const Home = () => {
         setOpenModalButton(false);
     };
 
+    //Esto no se usa en ningun lado, eliminar
     const functionGenerica = () => {
         setModoResponsiveFavIcon(true)
     }
@@ -174,6 +177,7 @@ const Home = () => {
         return (view === "view") ? moviesAndSeries.filter((contenido) => contenido.visto) : moviesAndSeries.filter(prev => !prev.visto);
     }
 
+    //Eliminar si no se utiliza.
     const filterForMovie = () => {
         const arrayAux = moviesAndSeries.filter(
             (content) =>
@@ -184,6 +188,7 @@ const Home = () => {
         return arrayAux;
     }
 
+    // Eliminar comentarios de codigo viejo
     // const renderContentFilterForWord = () => {
     //     const result = filterForMovie();
 
@@ -326,6 +331,7 @@ const Home = () => {
 
     const renderContentFilterForWord = () => {
         const result = filtroNombre();
+        //Borrar
         //console.log(result)
         if (buscarXPeliculaSerie == ""){
             return ;

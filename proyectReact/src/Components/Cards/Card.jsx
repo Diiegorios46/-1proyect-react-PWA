@@ -11,6 +11,7 @@ const Card = ({ estadoVisto , titulo , director , genero , rating , Onclick , id
             
             <ul className={Styles.ul}>
                 <li className={Styles.ContentTitulo}>{titulo}</li>
+                {/* Este subtitlo podria ser un componente dado que tienen todos el mismo style (se repite) y como prop el texto */}
                 <li className={Styles.ContentSubTitulo}>Director:  {director}</li>
                 <li className={Styles.ContentSubTitulo}>Genero:  {genero}</li>
                 <li className={Styles.ContentSubTitulo}>Tipo:  {tipo}</li>
